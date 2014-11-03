@@ -1,0 +1,36 @@
+.servicesPackages{
+	/*float:left;*/
+	background:url(../images/youngminds-servicesbg.gif) repeat-x left bottom #fff;
+	/*height:115px;*/
+	width:986px;
+	border:1px solid #1F81B5;
+	border-radius:3px;
+	margin:10px 0px 10px 0px;
+	padding:10px;
+	}
+.servicesPackagesRight{
+	float:right;
+	background:url(../images/youngminds-servicesbg.gif) repeat-x left bottom #fff;
+	height:115px;
+	width:280px;
+	border:1px solid #dbdbdb;
+	margin:10px 0px;
+	padding:10px;
+	border-radius:3px;
+	}
+
+.servicesContents{
+	/*float:right;*/
+	width:183px;
+	font-size:11px;
+	font-family:Verdana, Geneva, sans-serif;
+	text-align:left;
+}
+.servicesContents strong
+{
+	padding:3px 0;
+	display:block;
+	font-size:12px;
+	color:#010101;
+	font-family:Verdana, Geneva, sans-serif;
+}

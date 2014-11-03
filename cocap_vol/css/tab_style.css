@@ -1,0 +1,51 @@
+
+
+
+
+*
+{
+	margin:0;
+	padding:0;	
+}
+p
+{
+	margin:0;
+	padding:0;
+}
+a
+{
+	text-decoration:none;
+}
+li
+{
+	display:inline;
+}
+
+
+ul.link li a:hover
+{
+	color:#75b000;
+}
+#leftpanel p.heightfix
+{
+	height:40px;
+	line-height:16px;
+	overflow:hidden;
+	padding:8px 0!important;
+}
+
+#main
+{
+	background:#FFF;
+	display:block;
+	clear:both;
+	padding:0px 0 10px 0;
+}
+<!--#leftpanel
+{
+	width:1006px;
+	/*float:left;*/
+	margin:2px 0 0 10px;
+}-->
+
+
