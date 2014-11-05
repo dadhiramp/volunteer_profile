@@ -32,14 +32,145 @@ $( "#datepicker3" ).datepicker();
 $(function() {
 $( "#datepicker4" ).datepicker();
 });
+
+$(document).ready(function (){
+  $("#form1").submit(function(e){
+      var submit_flag = true;
+      if($("#fname").val()==""){
+        alert("Please enter first name");
+        submit_flag = false;
+      }
+
+      if($("#dob").val()=="" && submit_flag){
+        alert("Please select date of birth");
+        submit_flag = false;
+      }
+	  
+	  if($("#gender").val()=="" && submit_flag){
+        alert("Please select gender");
+        submit_flag = false;
+      }
+	  
+	  if($("#edu").val()=="" && submit_flag){
+        alert("Please select your qualification");
+        submit_flag = false;
+      }
+	  
+	  if($("#applyingfor").val()=="" && submit_flag){
+        alert("Please select the regional secretariat");
+        submit_flag = false;
+      }
+	  
+	  if($("#address").val()=="" && submit_flag){
+        alert("Please enter address");
+        submit_flag = false;
+      }
+	  
+	   if($("#icontact").val()=="" && submit_flag){
+        alert("Please enter your contatct number");
+        submit_flag = false;
+      }
+	  
+	  if($("#email").val()=="" && submit_flag){
+        alert("Please enter your email");
+        submit_flag = false;
+      }
+	  
+	  if($("#icountry").val()=="" && submit_flag){
+        alert("Please enter country name");
+        submit_flag = false;
+      }
+	  
+	  if($("#cname").val()=="" && submit_flag){
+        alert("Please enter your collage name");
+        submit_flag = false;
+      }
+	  
+	   if($("#caddress").val()=="" && submit_flag){
+        alert("Please enter your collage address");
+        submit_flag = false;
+      }
+	  
+	  if($("#ccpname").val()=="" && submit_flag){
+        alert("Please enter the name of your collage coordinator");
+        submit_flag = false;
+      }
+	  
+	  if($("#ccpnumber").val()=="" && submit_flag){
+        alert("Please enter the contact number of your collage coordinator");
+        submit_flag = false;
+      }
+	  
+	  if($("#why").val()=="" && submit_flag){
+        alert("Why did u choose COCAP as your field ? Please give specific reasons ");
+        submit_flag = false;
+      }
+	  
+	   if($("#expect").val()=="" && submit_flag){
+        alert("Please write your expectation from COCAP ? ");
+        submit_flag = false;
+      }
+	  
+	  if($("#inv").val()=="" && submit_flag){
+        alert("Please select in which area do you get involve? ");
+        submit_flag = false;
+      }
+	  
+	  if($("#day").val()=="" && submit_flag){
+        alert("Please select which days you are wondering to work with COCAP ?");
+        submit_flag = false;
+      }
+	  
+	  if($("#ppimage").val()=="" && submit_flag){
+        alert("Please select pp size image");
+        submit_flag = false;
+      }
+	  
+	  if($("#datepicker1").val()=="" && submit_flag){
+        alert("Please select data poste date");
+        submit_flag = false;
+      }
+	  
+	  if($("#datepicker4").val()=="" && submit_flag){
+        alert("Please select enrollment date");
+        submit_flag = false;
+      }
+	  
+	  if($("#ikeyw").val()=="" && submit_flag){
+        alert("Please write intern key word");
+        submit_flag = false;
+      }
+	  
+	  if($("#imetadis").val()=="" && submit_flag){
+        alert("Please write intern meta discription");
+        submit_flag = false;
+      }
+	  
+	   if(submit_flag)
+        return true;
+      else {
+        e.preventDefault();
+        return false;
+      }
+
+      console.log("test");
+  });
+});
+
 </script>
 
 <!--date picker ends -->
 </head>
+<?php 
+require_once('../functions/db_connect.php');
+require_once('../functions/contribution_function.php');
+$development_region=getAllDevelopmentRegion();
+?>
 
 <body>
 <form action="process/process_add_intern_profile.php" method="post" enctype="multipart/form-data" name="form1" id="form1" class="bordersize">
-  <fieldset>
+<input type="hidden" name="page" id="page" value="list_of_intern_profile"> 
+<fieldset>
     <legend class="toptitle">Add Intern Profile</legend>
     <table width="100%" border="0" align="left" dir="ltr">
       <!--<tr>
@@ -71,12 +202,10 @@ $( "#datepicker4" ).datepicker();
         <th align="left" scope="row">Applying for</th>
         <td><select name="applyingfor" id="applyingfor" class="boxforcheek">
          <option value="" selected="selected">--Select Regional Secretariat--</option>
-          <option value="0">Eastern Regional Secretariat</option>
-          <option value="1">Central Regional Secretariat</option>
-          <option value="2">Western Regional Secretariat</option>
-          <option value="3">Mid-Western Regional Secretariat</option>
-          <option value="4">Far-Western Regional Secretariat</option>
-          <option value="5">National Secretariat</option>
+        <?php 
+              foreach ($development_region as $row) {?>
+                <option value="<?php echo $row['code']?>" ><?php echo $row['name']?></option>    
+        <?php }?>
         </select></td>
       </tr>
       <tr>
@@ -116,13 +245,13 @@ $( "#datepicker4" ).datepicker();
       </tr>
       <tr>
         <th colspan="2" align="left" scope="row"> 
-        <textarea class="ckeditor" name="why" id="why" class="formforint" cols="45" rows="5"></textarea></th>
+        <textarea class="formcont textck"  placeholder="Why did u choose COCAP as your field ? Please give specific reasons"name="why" id="why" cols="45" rows="5"></textarea></th>
       </tr>
       <tr>
         <th colspan="2" align="left" scope="row">Your expectation from COCAP ? </th>
       </tr>
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="expect" id="expect" class="formforint" cols="45" rows="5"></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="formcont textck" placeholder="Please write your our expectation from COCAP" name="expect" id="expect"  cols="45" rows="5"></textarea></th>
       </tr>
       <tr>
         <th align="left" scope="row">In which area do you get involve? </th>
@@ -200,13 +329,13 @@ $( "#datepicker4" ).datepicker();
         <th align="left" scope="row">PP Image</th>
         <td><input type="file" name="ppimage" id="ppimage" /></td>
       </tr>
-      <tr>
+      <!--<tr>
         <th align="left" scope="row">Posted Date</th>
         <td><input type="date" name="pdate" id="datepicker1" class="formfprall" /></td>
-      </tr>
+      </tr>-->
       <tr>
         <th align="left" scope="row">Updated Date</th>
-        <td><input type="date" name="udate" id="datepicker2" class="formfprall"/></td>
+        <td><input type="date" name="udate" id="datepicker2" class="formfprall" disabled="disabled"/></td>
       </tr>
       <tr>
         <th align="left" scope="row">Internship From</th>
@@ -214,26 +343,26 @@ $( "#datepicker4" ).datepicker();
       </tr>
       <tr>
         <th align="left" scope="row">Internship To</th>
-        <td><input type="date" name="ito" id="datepicker3" class="formfprall" /></td>
+        <td><input type="date" name="ito" id="datepicker3" class="formfprall"  disabled="disabled"/></td>
       </tr>
       <tr>
         <th colspan="2" align="left" scope="row">Intern Key Word</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="ikeyw" id="ikeyw" class="formforint" cols="45" rows="5"></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="formcont textck" placeholder="Please Intern key word" name="ikeyw" id="ikeyw" class="formforint" cols="45" rows="5"></textarea></th>
       </tr>
       <tr>
         <th colspan="2" align="left" scope="row">Intern Meta Discription</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="imetadis" id="imetadis" class="formforint" cols="45" rows="5"></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="formcont textck" placeholder="Please write intern meta discription" name="imetadis" id="imetadis" class="formforint" cols="45" rows="5"></textarea></th>
       </tr>
       <tr>
         <th align="right" scope="row"><input type="submit" name="cmdSubmit" id="cmdSubmit" class="boxforcheek" value="Submit" /></th>
         <td align="left"><input type="submit" name="cmdReset" id="cmdReset" class="boxforcheek" value="Reset" /></td>
       </tr>
     </table>
-    <p>&nbsp;</p>
+
   </fieldset>
 </form>
 </body>

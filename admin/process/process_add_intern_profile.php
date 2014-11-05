@@ -5,6 +5,7 @@ require_once('../../functions/db_connect.php');
 $conxn=connect_db();
 
 //load the form values
+$page=$_POST['page'];
 $adate = mysql_real_escape_string($_POST['adate']);
 $fname = mysql_real_escape_string($_POST['fname']);
 $dob = mysql_real_escape_string($_POST['dob']);
@@ -44,10 +45,10 @@ foreach($day as $value){
 
 $u = $_POST['u'];
 
-$pdate = mysql_real_escape_string($_POST['pdate']);
+/*$pdate = mysql_real_escape_string($_POST['pdate']);
 $pdate = explode('/', $pdate);
-$pdate = $pdate[2].'-'.$pdate[0] .'-'.$pdate[1];///yyyy-mm-dd
-
+$pdate = $pdate[2].'-'.$pdate[0] .'-'.$pdate[1];///yyyy-mm-dd*/
+$pdate = date('Y-m-d');
 $udate = mysql_real_escape_string($_POST['udate']);
 $udate = explode('/', $udate);
 $udate = $udate[2].'-'.$udate[0] .'-'.$udate[1];///yyyy-mm-dd
@@ -99,12 +100,12 @@ if($affRows > 0){
 //success in deleting  the record
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&sucess='.base64_encode('CONGRATULATIONS <br />Your application has been sent').'";
+	window.location = "../../includes/response.php?page='.$page.'&sucess='.base64_encode('CONGRATULATIONS <br />Your application has been sent').'";
 	</script>';
 }else{
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&error='.base64_encode('SORRY ! Your application has been not sent').'";
+	window.location = "../../includes/response.php?page='.$page.'&error='.base64_encode('SORRY ! Your application has been not sent').'";
 	</script>';
 }
 

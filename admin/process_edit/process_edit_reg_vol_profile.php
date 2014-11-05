@@ -20,7 +20,7 @@ $quli = mysql_real_escape_string($_POST['quli']);
 $apply = $_POST['apply'];
 $caste = $_POST['caste'];
 $occ = $_POST['occ'];
-
+$page=$_POST['page'];
 
 
 $tadd = mysql_real_escape_string($_POST['tadd']);
@@ -177,12 +177,12 @@ if($affRows > 0){
 //success in deleting  the record
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&sucess='.base64_encode('CONGRATULATIONS  <br />Your update has been successful.').'";
+	window.location = "../../includes/response.php?page='.$page.'&sucess='.base64_encode('CONGRATULATIONS  <br />Your update has been successful.').'";
 	</script>';
 }else{
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&error='.base64_encode('SORRY !<br /> Unfortunately your update has not been successful.').'";
+	window.location = "../../includes/response.php?page='.$page.'&error='.base64_encode('SORRY !<br /> Unfortunately your update has not been successful.').'";
 	</script>';
 }
 

@@ -9,7 +9,18 @@ $getvol=getAllInterns();
 $getusr=getAllusers();
 
 //prepare the sql to get a page record depending on pageid
-$sql  = " SELECT * FROM  tbl_behav WHERE behav_id = '$pageid' ";
+$sql  = " SELECT 
+    ta.behav_id,
+    ta.situation_or_cond,
+	ta.grade,
+    ta.interns_id,
+    ti.intern_name,
+    ta.user_id,
+    ta.posted_date,
+    ta.updated_date
+FROM tbl_behav ta 
+join tbl_interns ti on(ti.interns_id=ta.interns_id)
+WHERE ta.behav_id = '$pageid' ";
 //execute the query
 $res = mysql_query($sql);// or die(mysql_error());
 //since only a single record is obtained:
@@ -68,10 +79,24 @@ $( "#datepicker1" ).datepicker();
 
 <body>
 <form name="form1" method="post" action="process_edit/process_edit_int_attitude.php" class="bordersize">
-  <fieldset>
+  <input type="hidden" name="page" id="page" value="list_of_intern_attitude">  
+ <fieldset>
     <legend class="toptitle">Edit Attitude </legend>
     <table width="42%" border="0" cellpadding="0">
-     
+      <tr>
+        <th width="33%" align="left" scope="row">Volunteer ID</th>
+        <td><?php echo $row['interns_id']?></td>
+    </tr>
+
+    <tr>
+        <th width="33%" align="left" scope="row">Volunteer Name</th>
+        <td><?php echo $row['intern_name']?>          </td>
+    </tr>
+
+    <tr>
+        <th>&nbsp;</th>
+        <td></td>
+    </tr>   
       <!--<tr>
         <th width="33%" align="left" scope="row">Choose Volunteer ID</th>
         <td><select name="chvolid" id="chvolid" class="boxforcont">
@@ -109,7 +134,7 @@ $( "#datepicker1" ).datepicker();
         <th colspan="2" align="left" scope="row">Volunteer's attitude, behaviors and secret things </th>
       </tr>
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="acont" id="acont" class="formcont" placeholder="Write like: #" cols="45" rows="5"><?php echo $row['situation_or_cond']; ?></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="formcontforedit textck" name="acont" id="acont" placeholder="Write like: #" cols="45" rows="5"><?php echo $row['situation_or_cond']; ?></textarea></th>
       </tr>
       <tr>
         <th align="left" scope="row">Attitude Grade</th>
@@ -133,12 +158,13 @@ $( "#datepicker1" ).datepicker();
         <th align="left" scope="row">Updated date</th>
         <td><input type="date" name="udate" id="datepicker1" class="formfprall" value="<?php echo $udate; ?>"></td>
       </tr>
+        <p>&nbsp;</p>
       <tr>
         <th align="right" scope="row"><input type="submit" name="cmdSubmit" id="cmdSubmit" class="boxforcheek" value="Update"> <input type="hidden" id="id" name="pid" value="<?php echo $row['behav_id']; ?>"</th>
         <td align="left"><input type="submit" name="cmdReset" id="cmdReset" class="boxforcheek" value="Cancel"></td>
       </tr>
     </table>
-    <p>&nbsp;</p>
+  
   </fieldset>
 </form>
 </body>

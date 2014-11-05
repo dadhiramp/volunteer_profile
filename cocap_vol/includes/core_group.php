@@ -1,8 +1,7 @@
 <?php
 require_once('functions/db_connect.php');
 require_once('functions/contribution_function.php');
-$volunteer_data=getAllvolunteers(NULL,0);
-
+$volunteer_data=getAllvolunteers(NULL,2);
 ?>
 
 <div id="core_group">
@@ -11,7 +10,7 @@ $volunteer_data=getAllvolunteers(NULL,0);
 	<ul>
       <?php foreach ($volunteer_data as $row) {?>
 		<li>
-        	<a href="vol_profile.php" class="leftt"><img src="uploads/<?php echo $row['pp_image']?>"/></a>
+        	<a href="vol_profile.php" class="leftt"><img src="uploads/<?php echo $row['pp_image']?>" height="145" width="132"/></a>
             <div class="rightt">
                 <a href="vol_profile.php"><h3 class="font"><?php echo $row['first_name'].",".$row['middle_name'].",".$row['last_name']?></h3></a>
                 <div class="cuidt"><?php echo $row['volunteer_id']?></div>

@@ -86,7 +86,8 @@ $( "#datepicker4" ).datepicker();
 
 <body>
 <form action="process_edit/process_edit_reg_vol_profile.php" method="post" enctype="multipart/form-data" name="form1" class="bordersize">
-  <fieldset>
+ <input type="hidden" name="page" id="page" value="view_all_profile"> 
+<fieldset>
     <legend class="toptitle">Edit Profile</legend>
     <table width="98%" border="0" align="left" cellpadding="0" cellspacing="0">
       <tr>
@@ -124,7 +125,7 @@ $( "#datepicker4" ).datepicker();
         <th align="left" valign="middle" scope="row">Apply for (Name of Regional Secretariat)</th>
         <td align="left"><label for="aregion">
           <select name="apply" id="apply" class="boxforcheek"> 
-          <option value=""> </option>
+         
             <?php
               foreach ($development_region as $dev_row) {
                   if($dev_row['code']==$row['apply_for'])
@@ -218,13 +219,13 @@ $( "#datepicker4" ).datepicker();
         <th height="28" colspan="2" align="left" valign="middle" scope="row">Working Experiance</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="ckeditor" name="wexp" id="wexp" cols="45" rows="5"  class="formforshort"><?php echo $row['working_exp']; ?></textarea>  </th>
+        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="formcontforedit textck" name="wexp" id="wexp" cols="45" rows="5"><?php echo $row['working_exp']; ?></textarea>  </th>
       </tr>
       <tr>
         <th height="28" colspan="2" align="left" valign="middle" scope="row">Why are you intrested to work with COCAP</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="ckeditor" name="why" id="why" cols="45" rows="5" class="formforshort"><?php echo $row['why_interested']; ?></textarea></th>
+        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="formcontforedit textck" name="why" id="why" cols="45" rows="5" ><?php echo $row['why_interested']; ?></textarea></th>
       </tr>
       
       <tr>
@@ -369,7 +370,7 @@ HR Education
       </tr>
       <tr>
         <th align="left" valign="middle" scope="row">Posted Date </th>
-        <td align="left"><input type="date" name="pdate" id="datepicker3" class="formfprall" value="<?php echo $pdate; ?>" /></td>
+        <td align="left"><input type="date" name="pdate" id="datepicker3" class="formfprall" value="<?php echo $pdate; ?>" disabled="disabled" /></td>
       </tr>
       <tr>
         <th align="left" valign="middle" scope="row">Update Date </th>
@@ -379,13 +380,13 @@ HR Education
         <th colspan="2" align="left" valign="middle" scope="row">Volunteer Key Words</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="ckeditor" name="volkeywords" id="volkeywords" cols="45" rows="5" class="formforshort"><?php echo $row['volunteer_key_words']; ?></textarea></th>
+        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="formcontforedit textck" name="volkeywords" id="volkeywords" cols="45" rows="5"  ><?php echo $row['volunteer_key_words']; ?></textarea></th>
       </tr>
       <tr>
         <th colspan="2" align="left" valign="middle" scope="row">Volunteer Meta Description</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="ckeditor" name="volmetadesc" id="volmetadesc" cols="45" rows="5" class="formforshort"><?php echo $row['volunteer_meta_description']; ?></textarea></th>
+        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="formcontforedit textck" name="volmetadesc" id="volmetadesc" cols="45" rows="5" ><?php echo $row['volunteer_meta_description']; ?></textarea></th>
       </tr>
       <tr>
         <th colspan="2" scope="row"><input type="submit" name="cmdupdate" id="cmdupdate" class="boxforcheek" value="Update">
@@ -394,7 +395,7 @@ HR Education
         <input type="submit" name="cmdreset" id="cmdreset" class="boxforcheek" value="Reset"></th>
       </tr>
     </table>
-    <p>&nbsp;</p>
+
   </fieldset>
 </form>
 </body>

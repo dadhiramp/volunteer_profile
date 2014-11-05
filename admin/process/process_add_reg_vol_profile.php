@@ -1,11 +1,12 @@
 <?php
 session_start();
+$uid = $_SESSION['user_id'];
 //connect to the database
 require_once('../../functions/db_connect.php');
 $conxn=connect_db();
 //load the form values
 $applyd = mysql_real_escape_string($_POST['applyd']);
-
+$page=$_POST['page'];
 $fname = mysql_real_escape_string($_POST['fname']);
 $sname = mysql_real_escape_string($_POST['sname']);
 $lname = mysql_real_escape_string($_POST['lname']);
@@ -71,9 +72,11 @@ $tdate = mysql_real_escape_string($_POST['tdate']);
 $tdate = explode('/', $tdate);
 $tdate = $tdate[2].'-'.$tdate[0] .'-'.$tdate[1];///yyyy-mm-dd
 
-$pdate = mysql_real_escape_string($_POST['pdate']);
+$pdate = date('Y-m-d');
+
+/*$pdate = mysql_real_escape_string($_POST['pdate']);
 $pdate = explode('/', $pdate);
-$pdate = $pdate[2].'-'.$pdate[0] .'-'.$pdate[1];///yyyy-mm-dd
+$pdate = $pdate[2].'-'.$pdate[0] .'-'.$pdate[1];///yyyy-mm-dd*/
 
 $udate = mysql_real_escape_string($_POST['udate']);
 $udate = explode('/', $udate);
@@ -129,12 +132,12 @@ if($affRows > 0){
 //success in deleting  the record
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&sucess='.base64_encode('CONGRATULATIONS  <br />Your entry has been successful.').'";
+	window.location = "../../includes/response.php?page='.$page.'&sucess='.base64_encode('CONGRATULATIONS  <br />Your entry has been successful.').'";
 	</script>';
 }else{
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&error='.base64_encode('SORRY !<br /> Unfortunately your entry has not been successful.').'";
+	window.location = "../../includes/response.php?page='.$page.'&error='.base64_encode('SORRY !<br /> Unfortunately your entry has not been successful.').'";
 	</script>';
 }
 

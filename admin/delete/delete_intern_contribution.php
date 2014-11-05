@@ -1,12 +1,15 @@
 <?php
 //load the pageid from URL
 $pageid = isset($_GET['pageid']) ? $_GET['pageid'] : '';
+$page='list_of_all_intern_contribution';
+
+
 
 //connect to the database
 require_once('process/db_connect.php');
 
 //prepare the sql
-$sql = "DELETE FROM tbl_contributions WHERE  	 	 	contributions_id = '$pageid' ";
+$sql = "DELETE FROM tbl_contributions WHERE contributions_id = '$pageid' ";
 
 //echo $sql;
 //execute the sql
@@ -19,12 +22,12 @@ if($affRows > 0){
 	//success in deleting  the record
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../includes/response.php?page=pages&sucess='.base64_encode(' Confermation ! <br />Your data has been deleted').'";
+	window.location = "../includes/response.php?page='.$page.'&sucess='.base64_encode(' Confermation ! <br />Your data has been deleted').'";
 	</script>';
 }else{
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../includes/response.php?page=pages&sucess='.base64_encode(' Sorry! <br /> Your data could not be  deleted').'";
+	window.location = "../includes/response.php?page='.$page.'&sucess='.base64_encode(' Sorry! <br /> Your data could not be  deleted').'";
 	</script>';
 }
 mysql_close($conxn);

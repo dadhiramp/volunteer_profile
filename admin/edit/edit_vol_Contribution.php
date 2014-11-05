@@ -74,7 +74,8 @@ $( "#datepicker1" ).datepicker();
 
 <body>
 <form name="form1" method="post" action="process_edit/process_edit_vol_Contribution.php" class="bordersize">
-  <fieldset>
+ <input type="hidden" name="page" id="page" value="view_all_vol_contribution"> 
+ <fieldset>
     <legend class="toptitle"> Edit Contribution</legend>
     <table width="42%" border="0" cellpadding="0">
      
@@ -95,8 +96,8 @@ $( "#datepicker1" ).datepicker();
 
     <tr>
         <th>&nbsp;</th>
-        <td></td>
-    </tr>   
+       
+    </tr>
        
    <!--<tr>
         <th width="33%" align="left" scope="row">User Name</th>
@@ -105,7 +106,7 @@ $( "#datepicker1" ).datepicker();
 		foreach ($getusr as $key=>$value){
 		
 		?>
-          <option value="<?php echo $value['user_id']; ?>"><?php echo $value['user_name']; ?></option>
+          <option value=" <?php echo $value['user_id']; ?>"><?php echo $value['user_name']; ?></option>
           
           <?php
 		}
@@ -116,8 +117,9 @@ $( "#datepicker1" ).datepicker();
       <tr>
         <th colspan="2" align="left" scope="row">Area of contributions including role, place and date.</th>
       </tr>
+      
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="acont" id="acont" class="formcont" placeholder="Write like: Ring road cycle riding for job for youth in motherland campaign as venue manager on August 14, 2015" cols="45" rows="5"><?php echo $row['area_of_contribution']; ?></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="textck formcontforedit" name="acont" id="acont"  placeholder="Write like: Ring road cycle riding for job for youth in motherland campaign as venue manager on August 14, 2015" cols="45" rows="5"><?php echo $row['area_of_contribution']; ?></textarea></th>
       </tr>
       <tr>
         <th align="left" scope="row">Posted date</th>
@@ -125,14 +127,14 @@ $( "#datepicker1" ).datepicker();
       </tr>
       <tr>
         <th align="left" scope="row">Updated date</th>
-        <td><input type="date" name="udate" id="datepicker" class="formfprall" value="<?php echo date('m/d/Y'); ?>" disabled="disabled"></td>
+        <td><input type="date" name="udate" id="datepicker" class="formfprall" value="<?php echo $udate; ?>"></td>
       </tr>
       <tr>
         <th align="right" scope="row"><input name="id" type="hidden" id="id" value="<?php echo $row['contributions_id']; ?>" />          <input type="submit" name="cmdSubmit" id="cmdSubmit" class="boxforcheek" value="Update"></th>
         <td align="left"><input type="submit" name="cmdReset" id="cmdReset" class="boxforcheek" value="Reset"></td>
       </tr>
     </table>
-    <p>&nbsp;</p>
+   
   </fieldset>
 </form>
 </body>

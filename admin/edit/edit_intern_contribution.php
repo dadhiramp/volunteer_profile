@@ -9,7 +9,18 @@ $getint=getAllInterns();
 $getusr=getAllusers();
 
 //prepare the sql to get a page record depending on pageid
-$sql  = " SELECT * FROM tbl_contributions WHERE contributions_id = '$pageid' ";
+$sql  = " SELECT 
+    tc.contributions_id,
+    tc.area_of_contribution,
+    tc.volunteer_id,
+    ti.intern_name,
+    tc.interns_id,
+    tc.user_id,
+    tc.posted_date,
+    tc.updated_date
+FROM tbl_contributions tc 
+join tbl_interns ti on(ti.interns_id=tc.interns_id)
+WHERE tc.contributions_id = '$pageid' ";
 //execute the query
 $res = mysql_query($sql);// or die(mysql_error());
 //since only a single record is obtained:
@@ -64,10 +75,24 @@ $( "#datepicker1" ).datepicker();
 
 <body>
 <form name="form1" method="post" action="process_edit/process_edit_int_Contribution.php" class="bordersize">
-  <fieldset>
+<input type="hidden" name="page" id="page" value="list_of_all_intern_contribution"> 
+<fieldset>
     <legend class="toptitle">Edit Contribution</legend>
     <table width="42%" border="0" cellpadding="0">
-     
+      <tr>
+        <th width="33%" align="left" scope="row">Volunteer ID</th>
+        <td><?php echo $row['interns_id']?></td>
+    </tr>
+
+    <tr>
+        <th width="33%" align="left" scope="row">Volunteer Name</th>
+        <td><?php echo $row['intern_name']?></td>
+    </tr>
+
+    <tr>
+        <th>&nbsp;</th>
+       
+    </tr>
       <!--<tr>
         <th width="33%" align="left" scope="row">Choose Intern ID</th>
         <td><select name="chvolid" id="chvolid" class="boxforcont">
@@ -106,7 +131,7 @@ $( "#datepicker1" ).datepicker();
         <th colspan="2" align="left" scope="row">Area of contributions including role, place and date</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="acont" id="acont" class="formcont" placeholder="Write like: Ring road cycle riding for job for youth in motherland campaign as venue manager on August 14, 2015" cols="45" rows="5"><?php echo $row['area_of_contribution']; ?></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="textck formcontforedit" name="acont" id="acont" placeholder="Write like: Ring road cycle riding for job for youth in motherland campaign as venue manager on August 14, 2015" cols="45" rows="5"><?php echo $row['area_of_contribution']; ?></textarea></th>
       </tr>
       <tr>
         <th align="left" scope="row">Posted date</th>
@@ -121,7 +146,7 @@ $( "#datepicker1" ).datepicker();
         <td align="left"><input type="submit" name="cmdReset" id="cmdReset" class="boxforcheek" value="Reset"></td>
       </tr>
     </table>
-    <p>&nbsp;</p>
+
   </fieldset>
 </form>
 <script type="text/javascript">

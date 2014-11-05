@@ -9,7 +9,19 @@ $allvol=getAllvolunteers();
 $allusr=getAllusers();
 
 //prepare the sql to get a page record depending on pageid
-$sql  = " SELECT * FROM tbl_participatn WHERE participatn_id = '$pageid' ";
+$sql  = " SELECT 
+    tp.participatn_id,
+    tp.name_of_program,
+    tp.volunteer_id,
+    tv.first_name,
+    tv.middle_name,
+    tv.last_name,
+    tp.user_id,
+    tp.posted_date,
+    tp.updated_date
+FROM tbl_participatn tp 
+join tbl_volunteers tv on(tv.volunteer_id=tp.volunteer_id)
+WHERE tp.participatn_id = '$pageid' ";
 //execute the query
 $res = mysql_query($sql);// or die(mysql_error());
 //since only a single record is obtained:
@@ -61,48 +73,35 @@ $( "#datepicker1" ).datepicker();
 
 <body>
 <form name="form1" method="post" action="process_edit/process_edit_vol_participation.php" class="bordersize">
+ <input type="hidden" name="page" id="page" value="view_all_vol_participation">  
   <fieldset>
     <legend class="toptitle">Edit Participation</legend>
     <table width="42%" border="0" cellpadding="0">
      
-      <!--<tr>
-        <th width="33%" align="left" scope="row">Choose Volunteer ID</th>
-        <td><select name="chvolid" id="chvolid" class="boxforcont">
-        
-		<?php 
-		foreach ($allvol as $key=>$value){ 
-		
-		?>
-          <option value="<?php echo $value['volunteer_id'];  ?>"><?php echo $value['volunteer_id']; ?></option>
-         <?php
-		 }
-		
-		?></select></td>
+      <tr>
+        <th width="33%" align="left" scope="row">Volunteer ID</th>
+        <td><?php echo $row['volunteer_id']?></td>
+    </tr>
+
+    <tr>
+        <th width="33%" align="left" scope="row">Volunteer Name</th>
+        <td><?php if(trim($row['middle_name']!=''))
+                      echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];
+                  else
+                      echo $row['first_name'].' '.$row['last_name'];    
+            ?>
+          </td>
+    </tr>
+
+     <tr>
+        <th>&nbsp;</th>
        
-       
-      </tr>-->
-     
-     
-      <!--<tr>
-        <th width="33%" align="left" scope="row">User ID</th>
-        <td width="67%"><select name="uid" id="uid" class="boxforcont">
-        <?php 
-		foreach ($allusr as $key=>$value){
-		
-		?>
-          <option value="<?php echo $value['user_id']; ?>"><?php echo $value['user_name']; ?></option>
-          
-          <?php
-		}
-		  
-		  ?>
-        </select></td>
-      </tr>-->
+    </tr> 
       <tr>
         <th colspan="2" align="left" scope="row">Area of participation including role, place and date</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="acont" id="acont" class="formcont" placeholder="Area of participation including role, place and date (Write like: ring road cycling riding for job for youth in motherland campaign as venue manager on August 14, 2015) " cols="45" rows="5"><?php echo $row['name_of_program']; ?></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="textck formcontforedit" name="acont" id="acont" placeholder="Area of participation including role, place and date (Write like: ring road cycling riding for job for youth in motherland campaign as venue manager on August 14, 2015) " cols="45" rows="5"><?php echo $row['name_of_program']; ?></textarea></th>
       </tr>
       <tr>
         <th align="left" scope="row">Posted date</th>
@@ -117,7 +116,7 @@ $( "#datepicker1" ).datepicker();
         <td align="left"><input type="submit" name="cmdReset" id="cmdReset" class="boxforcheek" value="Cancel"></td>
       </tr>
     </table>
-    <p>&nbsp;</p>
+   
   </fieldset>
 </form>
 </body>

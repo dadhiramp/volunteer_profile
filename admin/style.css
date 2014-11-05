@@ -516,8 +516,27 @@ color: #ccc;
 .formcont
 {
     display: block;
-    width: 500px !important;
-    height: 100px;
+    width: 575px !important;
+    height: 320px;
+    padding: 8px 12px;
+	margin-bottom:10px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+	margin:5px 0 5px 0;
+    background-color: #FFF;
+    background-image: none;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+.formcontforedit
+{
+    display: block;
+    width: 575px !important;
+    height: 247px;
     padding: 8px 12px;
 	margin-bottom:10px;
     font-size: 14px;
@@ -572,5 +591,12 @@ color: #ccc;
 	{
 		font-family:12px;
 		color:#03F;
+	}
+	
+.textck
+	{
+	font-family:Verdana, Geneva, sans-serif;
+	color:black;
+	font-size:14px;
 	}
 /*code for form ends */

@@ -5,6 +5,7 @@ require_once('../../functions/db_connect.php');
 
 //load the form values
 $chvolid = $_POST['chvolid'];
+$page=$_POST['page'];
 $uid = $_POST['uid'];
 $acont = $_POST['acont'];
 
@@ -48,12 +49,12 @@ if($affRows > 0){
 //success in deleting  the record
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&sucess='.base64_encode('CONGRATULATIONS  <br />Your update has been successful.').'";
+	window.location = "../../includes/response.php?page='.$page.'&sucess='.base64_encode('CONGRATULATIONS  <br />Your update has been successful.').'";
 	</script>';
 }else{
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&error='.base64_encode('SORRY !<br /> your update has not been successful.').'";
+	window.location = "../../includes/response.php?page='.$page.'&error='.base64_encode('SORRY !<br /> your update has not been successful.').'";
 	</script>';
 }
 

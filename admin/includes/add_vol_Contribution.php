@@ -56,25 +56,22 @@ $(document).ready(function(){
 
 });
 
-
-
-
-
 </script>
 
-<!--date picker ends -->
+
 </head>
 
 <body>
 <form name="form1" id="form1" method="post" action="process/process_add_vol_Contribution.php" class="bordersize">
-  <fieldset>
+<input type="hidden" name="page" id="page" value="view_all_vol_contribution"> 
+<fieldset>
     <legend class="toptitle">Add New Contribution</legend>
     <table width="42%" border="0" cellpadding="0">
      
       <tr>
         <th width="33%" align="left" scope="row">Choose Volunteer ID</th>
         <td><select name="chvolid" id="chvolid" class="boxforcont">
-            <option value="">--Select Volunteer Id--</option>
+            <option value="">--Select Volunteer ID--</option>
 		<?php 
 		foreach ($chvolid as $key=>$value){ 
 		
@@ -87,9 +84,12 @@ $(document).ready(function(){
        
        
       </tr>
-     
-     
-   <!-- <tr>
+      <tr>
+        <th>&nbsp;</th>
+       
+    </tr>
+
+   <!--<tr>
         <th width="33%" align="left" scope="row">User Name</th>
         <td width="67%"><select name="uid" id="uid" class="boxforcont">
         <?php 
@@ -104,18 +104,20 @@ $(document).ready(function(){
 		  ?>
         </select></td>
       </tr>-->
+       
       <tr>
         <th colspan="2" align="left" scope="row">Area of contributions including role, place and date.</th>
       </tr>
+        
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="acont" id="acont" class="formcont" placeholder="Write like: Ring road cycle riding for job for youth in motherland campaign as venue manager on August 14, 2015" cols="45" rows="5"></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="formcont textck"name="acont" id="acont"  placeholder="Write like: Ring road cycle riding for job for youth in motherland campaign as venue manager on August 14, 2015" cols="45" rows="5"></textarea></th>
       </tr>
       <tr>
         <th align="right" scope="row"><input type="submit" name="cmdSubmit" id="cmdSubmit" class="boxforcheek" value="Submit"></th>
         <td align="left"><input type="submit" name="cmdReset" id="cmdReset" class="boxforcheek" value="Reset"></td>
       </tr>
     </table>
-    <p>&nbsp;</p>
+   
   </fieldset>
 </form>
 </body>

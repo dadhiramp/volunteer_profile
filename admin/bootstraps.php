@@ -41,11 +41,11 @@ break;
 
 
 case 'volpart':
-if($action == 'add_vol_participation'){
+if($action == 'add_vol_participation' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 $page_to_load = "includes/add_vol_participation.php";
-}else if($action == 'edit'){
+}else if($action == 'edit' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "edit/edit_vol_participation.php";
-}else if($action == 'delete'){
+}else if($action == 'delete'&& ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "delete/delete_vol_participation.php";
 }
 break;
@@ -55,11 +55,12 @@ $page_to_load = "../view_list/view_all_vol_participation.php";
 break;
 
 case 'voltrai':
-if($action == 'add_vol_trainings'){
+if($action == 'add_vol_trainings' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
+
 $page_to_load = "includes/add_vol_trainings.php";
-}else if($action == 'edit'){
+}else if($action == 'edit' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "edit/edit_vol_trainings.php";
-}else if($action == 'delete'){
+}else if($action == 'delete' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "delete/delete_vol_trainings.php";
 }
 break;
@@ -71,11 +72,11 @@ break;
 
 
 case 'volexp':
-if($action == 'add_vol_experiance'){
+if($action == 'add_vol_experiance' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 $page_to_load = "includes/add_vol_experiance.php";
-}else if($action == 'edit'){
+}else if($action == 'edit' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "edit/edit_vol_experiance.php";
-}else if($action == 'delete'){
+}else if($action == 'delete' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "delete/delete_vol_experiance.php";
 }
 break;
@@ -87,11 +88,11 @@ break;
 
 
 case 'volatt':
-if($action == 'add_vol_attitude'){
+if($action == 'add_vol_attitude' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 $page_to_load = "includes/add_vol_attitude.php";
-}else if($action == 'edit'){
+}else if($action == 'edit' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "edit/edit_vol_attitude.php";
-}else if($action == 'delete'){
+}else if($action == 'delete' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "delete/delete_vol_attitude.php";
 }
 break;
@@ -106,11 +107,11 @@ break;
 
 /*internship bootstrap*/
 case 'intpro':
-if($action == 'add_intern_profile'){
+if($action == 'add_intern_profile' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 $page_to_load = "includes/add_intern_profile.php";
-}else if($action == 'edit'){
+}else if($action == 'edit' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "edit/edit_intern_profile.php";
-}else if($action == 'delete'){
+}else if($action == 'delete' && ( $_SESSION['access_level'] == '0' ||$_SESSION['access_level'] == '1' ||$_SESSION['access_level'] == '2' )){
 	$page_to_load = "delete/delete_intern_profile.php";
 }
 break;

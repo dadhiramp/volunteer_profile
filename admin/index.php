@@ -84,11 +84,12 @@ ddaccordion.init({
     
     		<div class="sidebar_search">
             <form>
-            <input type="text" name="" class="search_input" value="search keyword" onclick="this.value=''" />
-            <input type="image" class="search_submit" src="images/search.png" />
+            <input type="text" name="" class="search_input" value="CONTENT MANAGEMENT SYSTEM " onclick="this.value=''" />
+           
+          
             </form>            
-            </div>
-    
+            </div> 
+               
         <?php require('includes/nav.php'); ?>
             
             

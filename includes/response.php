@@ -49,7 +49,7 @@ font-size:16px;
 <?php if (isset($_GET['sucess'])){ ?>
 	<div class="success"><?php echo base64_decode($_GET['sucess']); ?></div>
     <?php 
-    header('Refresh: 3;url=http://'.$_SERVER['HTTP_HOST'].'/'.$_SESSION['root_site'].'/admin/index.php?page=view_all_vol_contribution');?>
+    header('Refresh: 3;url=http://'.$_SERVER['HTTP_HOST'].'/'.$_SESSION['root_site'].'/admin/index.php?page='.$_GET['page']);?>
     <?php 
 	}
 	?>

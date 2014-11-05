@@ -99,7 +99,7 @@ ddaccordion.init({
     <thead>
     	<tr>
         	<th scope="col" class="rounded-company"></th>
-            <th scope="col" class="rounded">ID</th>
+            <th scope="col" class="rounded">VID</th>
             <th scope="col" class="rounded">Name</th>
             <th scope="col" class="rounded">Email</th>
              <th scope="col" class="rounded">Active</th>

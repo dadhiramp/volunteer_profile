@@ -1,6 +1,6 @@
 <?php require_once('../functions/db_connect.php');
 require_once('../functions/contribution_function.php');
-$intprof=getAllintern();
+$intprof=getAllInterns();
 require_once('../pagination/Zebra_Pagination.php');
 /*$page_id=isset($_GET['page_id']) ? $_GET['page_id'] :1;
 $howMany = 10;
@@ -98,7 +98,7 @@ ddaccordion.init({
     <thead>
     	<tr>
         	<th scope="col" class="rounded-company"></th>
-            <th scope="col" class="rounded">ID</th>
+            <th scope="col" class="rounded">IID</th>
             <th scope="col" class="rounded">Name </th>
             <th scope="col" class="rounded">Email</th>
             <th scope="col" class="rounded">Active</th>

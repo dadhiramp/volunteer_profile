@@ -1,3 +1,12 @@
+<?php
+require_once('functions/db_connect.php');
+require_once('functions/contribution_function.php');
+$intern_data=getAllinternIndividual($_GET['id']);
+$contribution_data=getAllcontributionforint($_GET['id']);
+$row=$intern_data[0];
+
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -88,7 +97,7 @@
      
 			
             <ul class="volun">
-          <li class="cuid">1282</li>
+          <li class="cuid"><?php echo $row['interns_id']?></li>
                 <li class="home">Biratnagar,Nepal</li>
                 <li class="call">00977 9842463584</li>
                 <li class="email">deardeepakg@gmail.com</li>
@@ -129,23 +138,15 @@
         <div id="leftpanel">
 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-<li class="ui-state-default ui-corner-top"><a href="#tabs-2">CONTRIBUTION</a></li>
 <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1">PARTICIPATION</a></li>
+<li class="ui-state-default ui-corner-top"><a href="#tabs-2">CONTRIBUTION</a></li>
+
 <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-3">TRAINING RECEIVED </a></li>
 <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-4">EXPERIENCE</a></li>
 
 </ul>
 
-<div id="tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 
-<div class="servicesPackages">
-<div class="servicesContents">    
-<p class="heightfix">
-On arrival in Kathmandu, you will be met by our representative and transferred to your hotel. In the evening, there will be a cultural show and dinner.</p>
-    
-</div>
-</div>
-</div>
 
   
   
@@ -165,6 +166,20 @@ Designated Nepal’s first Himalayan national park in 1971, Langtang is a specta
 
 </div>
 
+<div id="tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+
+<div class="servicesPackages">
+<?php 
+$count=1;
+foreach($contribution_data as $contribute){
+	
+	echo $contribute['area_of_contribution'];
+	
+	
+	}
+
+?> </div>
+</div>
 
 <div id="tabs-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
 		                    

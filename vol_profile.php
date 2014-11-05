@@ -1,11 +1,16 @@
-<!--header -->
-<?php 
-require('cocap_vol/includes/header.php'); 
+<?php
 require_once('functions/db_connect.php');
 require_once('functions/contribution_function.php');
-$volunteer_data=getAllvolunteers(NULL,0);
+$volunteer_data=getAllvolunteersIndividual($_GET['id']);
+$contribution_data=getAllcontribution($_GET['id']);
+$participation_dats=getAllparticipation($_GET['id']);
+$training_data=getAlltraining($_GET['id']);
+$experience_data=getAllexp($_GET['id']);
 
+
+$row=$volunteer_data[0];
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -90,7 +95,7 @@ $volunteer_data=getAllvolunteers(NULL,0);
       
         <div class="proleftlast">
   
-     <img src="uploads/<?php echo $row['pp_image']?>"/>
+     	<img src="uploads/<?php echo $row['pp_image']?>" height="130" width="132"/>
     
         </div>
         <div class="prorightlast">
@@ -98,20 +103,22 @@ $volunteer_data=getAllvolunteers(NULL,0);
      
 			
             <ul class="volun">
-            
+              
           <li class="cuid"><?php echo $row['volunteer_id']?></li>
                 <li class="home"><?php echo $row['permanent_address'].",".$row['country']?></li>
-               <li class="position"><?php echo $row['status_at_cocap']?></li>
+               <li class="callt"><?php echo $row['qualification']?></li>
                 <li class="email"><?php echo $row['email']?></li>
-                <li class="flag">><?php echo $row['development_region']?></li>
+                <li class="flag"><?php echo $row['development_region']?></li>
+               
                 
+                
+          
             </ul>
            
         </div>
         <div class="comintro">
         <ul>
         <li>
-        <p><strong>Education:</strong></p>
         <p><strong>Enrollment Date:</strong></p>
         <p><strong>Permanent Address:</strong></p>
          <p><strong>Temporary Address :</strong></p>
@@ -125,7 +132,6 @@ $volunteer_data=getAllvolunteers(NULL,0);
         <div class="comright">
         <ul>
         <li>
-        <p> <?php echo $row['qualification']?></p>
         <p><?php echo $row['voluntarism_from']?></p>
         <p><?php echo $row['permanent_address'].",".$row['country']?></p>
         <p><?php echo $row['temporary_address']?></p>
@@ -151,11 +157,17 @@ $volunteer_data=getAllvolunteers(NULL,0);
 <div id="tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 
 <div class="servicesPackages">
-<div class="servicesContents">    
-<p class="heightfix">
-<?php echo $row['area_of_contribution']?></p>
-    
-</div>
+   
+<?php 
+$count=1;
+foreach($contribution_data as $contribute){
+	echo $contribute['area_of_contribution'];
+	
+	
+	}
+
+?>  
+
 </div>
 </div>
 
@@ -166,12 +178,15 @@ $volunteer_data=getAllvolunteers(NULL,0);
 		                    
 					                    
 <div class="servicesPackages">
-<div class="servicesContents">
-<p class="heightfix">
-Designated Nepal’s first Himalayan national park in 1971, Langtang is a spectacular valley sandwiched between the main Himalayan ...</p><br>
+<?php 
+$count=1;
+foreach($participation_dats as $participate){
+	echo $participate['name_of_program'];
+	
+	
+	}
 
-</div>
-
+?> 
 </div>
 
 
@@ -182,11 +197,16 @@ Designated Nepal’s first Himalayan national park in 1971, Langtang is a specta
 		                    
 					                    
 <div class="servicesPackages">
-<div class="servicesContents">
-<p class="heightfix">
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p><br>
+<?php 
+$count=1;
+foreach($training_data as $training){
+	
+	echo $training['name_of_training'];
+	
+	
+	}
 
-</div>
+?> 
 
 </div>
 
@@ -197,11 +217,15 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p><br>
 		                    
 					                    
 <div class="servicesPackages">
-<div class="servicesContents">
-<p class="heightfix">
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p><br>
+<?php 
+$count=1;
+foreach($experience_data as $experience){
+	echo $experience['exp_desc'];
+	
+	
+	}
 
-</div>
+?> 
 
 </div>
 

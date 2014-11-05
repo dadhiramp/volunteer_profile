@@ -34,12 +34,13 @@ function addContribution($area_of_contribution,$role,$location, $date_from, $dat
 function getAllvolunteers($limit = '',$volunteer_level=null){
 	$con = connect_db();
 	$sql = "SELECT * FROM  tbl_volunteers where 1=1";
-	if($_SESSION['access_level']==0 and trim($_SESSION['access_level']) !=""){
+	if($_SESSION['access_level']==0 and trim($_SESSION['access_level']) !="" && trim($_GET['page']) !=""){
 		$sql.=" and apply_for='".$_SESSION['secretariat']."' ";
 	}
 	if(trim($volunteer_level)!=""){
-		$sql.=" and volunteer_level='".$volunteer_level."' ";	
+		$sql.=" and volunteer_level=".$volunteer_level;	
 	}
+	
 	if($limit !=''){
 	$sql .= $limit;
 	}
@@ -55,6 +56,36 @@ function getAllvolunteers($limit = '',$volunteer_level=null){
 	return $data; // eithr blank or full with tcontent
 	close_db($con);
 }
+function getAllvolunteersIndividual($volunteer_id=""){
+	$con = connect_db();
+	$sql = "SELECT * FROM  tbl_volunteers where 1=1";
+	if($_SESSION['access_level']==0 and trim($_SESSION['access_level']) !="" && trim($_GET['page']) !=""){
+		$sql.=" and apply_for='".$_SESSION['secretariat']."' ";
+	}
+	if(trim($volunteer_level)!=""){
+		$sql.=" and volunteer_level=".$volunteer_level;	
+	}
+	
+	if(trim($volunteer_id)!=""){
+		$sql.=" and volunteer_id=".$volunteer_id;	
+	}
+	
+	if($limit !=''){
+	$sql .= $limit;
+	}
+	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
+	$numRows = mysql_num_rows($res);
+	$data = array();
+	if($numRows > 0){
+				while($row = mysql_fetch_assoc($res)){
+						array_push($data, $row);
+				}	
+	}
+	
+	return $data; // eithr blank or full with tcontent
+	close_db($con);
+}
+
 
 function getAllusers(){
 	$con = connect_db();
@@ -74,7 +105,15 @@ function getAllusers(){
 
 function getAllInterns(){
 	$con = connect_db();
-	$sql = "SELECT * FROM tbl_interns ";
+	
+	$sql = "SELECT * FROM  tbl_interns where 1=1";
+	if($_SESSION['access_level']==0 and trim($_SESSION['access_level']) !=""){
+		$sql.=" and apply_for='".$_SESSION['secretariat']."' ";
+	}
+	if($limit !=''){
+	$sql .= $limit;
+	}
+	
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -92,7 +131,14 @@ function getAllInterns(){
 function getAllparticipation(){
 	$con = connect_db();
 
-	$sql = "SELECT * FROM  tbl_volunteers v INNER JOIN tbl_participatn p ON v.volunteer_id  = p.volunteer_id   ";
+	$sql = "SELECT p.participatn_id, p.name_of_program, v.* FROM tbl_volunteers v
+	JOIN  tbl_participatn p ON v. 	volunteer_id = p.volunteer_id
+	JOIN tbl_development_region tdr on (tdr.code=v.apply_for) WHERE 1=1 ";
+	
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and tdr.code=".$_SESSION['secretariat'];
+	} 
+	
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -105,7 +151,6 @@ function getAllparticipation(){
 	return $data; // eithr blank or full with tcontent
 	close_db($con);
 }
-
 //function participation for intern
 function getAllparticipationforint(){
 	$con = connect_db();
@@ -127,14 +172,18 @@ function getAllparticipationforint(){
 
 
 //function contribution
-function getAllcontribution(){
+function getAllcontribution($volunteer_id=""){
 	$con = connect_db();
-	$sql = "SELECT c.contributions_id, v.* FROM  tbl_volunteers v 
+	$sql = "SELECT c.contributions_id,c.area_of_contribution, v.* FROM  tbl_volunteers v 
 JOIN tbl_contributions c ON v.volunteer_id  = c.volunteer_id
 join tbl_development_region tdr on (tdr.code=v.apply_for) WHERE 1=1  ";
 	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
 		$sql.=" and tdr.code=".$_SESSION['secretariat'];
 	} 
+	if(trim($volunteer_id)!=""){
+		$sql.=" and v.volunteer_id=".$volunteer_id;
+	} 
+	
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -152,9 +201,16 @@ join tbl_development_region tdr on (tdr.code=v.apply_for) WHERE 1=1  ";
 
 
 //function contribution for intern
-function getAllcontributionforint(){
+function getAllcontributionforint($intern_id=""){
 	$con = connect_db();
-	$sql = "SELECT * FROM  tbl_interns i INNER JOIN tbl_contributions c ON i. interns_id  = c.interns_id   ";
+	$sql = "SELECT * FROM  tbl_interns i INNER JOIN tbl_contributions c ON (i. interns_id  = c.interns_id)
+	join tbl_development_region tdr on (tdr.code=i.apply_for) where 1=1 ";
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and tdr.code=".$_SESSION['secretariat'];
+	} 
+	if(trim($intern_id)!=""){
+		$sql.=" and i.interns_id=".$intern_id;
+	}
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -172,8 +228,13 @@ function getAllcontributionforint(){
 function getAlltraining(){
 	$con = connect_db();
 	
-	$sql = "SELECT * FROM  tbl_volunteers v INNER JOIN tbl_trainings t ON v.volunteer_id  = t.volunteer_id   ";
-	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
+	$sql = "SELECT t.training_id, t.name_of_training, v.* FROM  tbl_volunteers v 
+	JOIN tbl_trainings t ON v.volunteer_id  = t.volunteer_id
+	join tbl_development_region tdr on (tdr.code=v.apply_for) WHERE 1=1  ";
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and tdr.code=".$_SESSION['secretariat'];
+	} 
+		$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
 	if($numRows > 0){
@@ -185,6 +246,7 @@ function getAlltraining(){
 	return $data; // eithr blank or full with tcontent
 	close_db($con);
 }
+
 
 //function trainings for int
 function getAlltrainingforint(){
@@ -207,7 +269,13 @@ function getAlltrainingforint(){
 //function experiance
 function getAllexp(){
 	$con = connect_db();
-	$sql = "SELECT * FROM  tbl_volunteers v INNER JOIN tbl_exp e ON v.volunteer_id  = e.volunteer_id   ";
+	$con = connect_db();
+	$sql = "SELECT e.exp_id, e.exp_desc, v.* FROM  tbl_volunteers v 
+	JOIN tbl_exp e ON v.volunteer_id  = e.volunteer_id
+	join tbl_development_region tdr on (tdr.code=v.apply_for) WHERE 1=1  ";
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and tdr.code=".$_SESSION['secretariat'];
+	} 
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -242,7 +310,12 @@ function getAllexpforint(){
 function getAllbehav(){
 	$con = connect_db();
 	
-	$sql = "SELECT * FROM  tbl_volunteers v INNER JOIN tbl_behav b ON v.volunteer_id  = b.volunteer_id   ";
+	$sql = "SELECT b.behav_id, v.* FROM  tbl_volunteers v 
+	JOIN tbl_behav b ON v.volunteer_id  = b.volunteer_id
+	join tbl_development_region tdr on (tdr.code=v.apply_for) WHERE 1=1  ";
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and tdr.code=".$_SESSION['secretariat'];
+	} 
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -255,7 +328,6 @@ function getAllbehav(){
 	return $data; // eithr blank or full with tcontent
 	close_db($con);
 }
-
 //function attitide for intern 
 function getAllbehavforint(){
 	$con = connect_db();
@@ -274,11 +346,12 @@ function getAllbehavforint(){
 	close_db($con);
 }
 
-
-//function interns
-function getAllintern(){
+function getAllDevelopmentRegion(){
 	$con = connect_db();
-	$sql = "SELECT * FROM   tbl_interns ";
+	$sql = "SELECT * FROM tbl_development_region where 1=1";
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and code=".$_SESSION['secretariat'];
+	}
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -292,11 +365,13 @@ function getAllintern(){
 	close_db($con);
 }
 
-function getAllDevelopmentRegion(){
+function getAllinternIndividual($interns_id=""){
 	$con = connect_db();
-	$sql = "SELECT * FROM tbl_development_region where 1=1";
-	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
-		$sql.=" and code=".$_SESSION['secretariat'];
+	$sql = "SELECT * FROM  tbl_interns where 1=1";
+	if($_SESSION['access_level']==0 and trim($_SESSION['access_level']) !="" && trim($_GET['page']) !="")
+		
+	if($limit !=''){
+	$sql .= $limit;
 	}
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);

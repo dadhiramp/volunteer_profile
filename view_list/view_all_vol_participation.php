@@ -28,9 +28,9 @@ require_once('../pagination/Zebra_Pagination.php');
 
 
 
-echo '<pre>';
-print_r($chusers);
-echo '</pre>';
+/*echo '<pre>';
+print_r($volpart);
+echo '</pre>';*/
 ?>
 
 

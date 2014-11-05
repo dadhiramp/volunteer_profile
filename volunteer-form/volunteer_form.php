@@ -7,9 +7,9 @@
 <!--date picker -->
 <meta charset="utf-8">
   <title>jQuery UI Datepicker - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../css/smoothness/jquery-ui.css">
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
   
   
@@ -23,6 +23,33 @@
   });
   </script>
 
+<script>
+$(document).ready(function (){
+  $("#errorLi").submit(function(e){
+      var submit_flag = true;
+      if($("#fname").val()==""){
+        alert("Please enter first name");
+        submit_flag = false;
+      }
+
+      
+        e.preventDefault();
+	  	return false;
+	  
+	  
+	  
+	      if(submit_flag)
+        return true;
+      else {
+        e.preventDefault();
+        return false;
+      }
+
+      console.log("test");
+  });
+});
+</script>
+      
 <!--date picker ends -->
 
 <!-- Meta Tags -->

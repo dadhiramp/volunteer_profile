@@ -44,6 +44,142 @@ $(document).ready(function (){
         alert("Please enter last name");
         submit_flag = false;
       }
+	  
+	  if($("#dob").val()=="" && submit_flag){
+        alert("Please enter date of birth");
+        submit_flag = false;
+      }
+	  
+	 if($("#gender").val()=="" && submit_flag){
+        alert("Please select gender");
+        submit_flag = false;
+      }
+	  
+	  if($("#quli").val()=="" && submit_flag){
+        alert("Please enter qualification");
+        submit_flag = false;
+      }
+	  
+	  if($("#apply").val()=="" && submit_flag){
+        alert("Please select regional secretariat");
+        submit_flag = false;
+      }
+	  
+	  if($("#caste").val()=="" && submit_flag){
+        alert("Please select caste");
+        submit_flag = false;
+      }
+	  
+	  if($("#occ").val()=="" && submit_flag){
+        alert("Please select occupation");
+        submit_flag = false;
+      }
+	  
+	   if($("#tadd").val()=="" && submit_flag){
+        alert("Please enter temporary adders");
+        submit_flag = false;
+      }
+	  
+	  if($("#padd").val()=="" && submit_flag){
+        alert("Please enter permanent  adders ");
+        submit_flag = false;
+      }
+	  
+	  if($("#city").val()=="" && submit_flag){
+        alert("Please enter city");
+        submit_flag = false;
+      }
+	  
+	  if($("#dregion").val()=="" && submit_flag){
+        alert("Please enter development region or state");
+        submit_flag = false;
+      }
+      
+       if($("#pcode").val()=="" && submit_flag){
+        alert("Please enter postal code");
+        submit_flag = false;
+      }
+	  
+	  if($("#country").val()=="" && submit_flag){
+        alert("Please enter country");
+        submit_flag = false;
+      }
+	  
+	  if($("#email").val()=="" && submit_flag){
+        alert("Please enter email");
+        submit_flag = false;
+      }
+	  
+	   if($("#cnum").val()=="" && submit_flag){
+        alert("Please enter contact number");
+        submit_flag = false;
+      }
+	  
+	  if($("#acontnum").val()=="" && submit_flag){
+        alert("Please enter alternative contact number");
+        submit_flag = false;
+      }
+	  
+	  if($("#level").val()=="" && submit_flag){
+        alert("Please select volunteer level");
+        submit_flag = false;
+      }
+	  
+	  if($("#wexp").val()=="" && submit_flag){
+        alert("Please enter working experience");
+        submit_flag = false;
+      }
+	  
+	  if($("#why").val()=="" && submit_flag){
+        alert("Please enter why are you intrested to work with COCAP");
+        submit_flag = false;
+      }
+	  
+	   if($("#which").val()=="" && submit_flag){
+        alert("Please enter which Section Would You Like to Work");
+        submit_flag = false;
+      }
+	  
+	   if($("#how").val()=="" && submit_flag){
+        alert("Please enter how Will You Contribute");
+        submit_flag = false;
+      }
+	  
+	   if($("#day").val()=="" && submit_flag){
+        alert("Please select the day");
+        submit_flag = false;
+      }
+	  
+	   if($("#banner").val()=="" && submit_flag){
+        alert("Please select the banner image");
+        submit_flag = false;
+      }
+	  
+	  if($("#ppimage").val()=="" && submit_flag){
+        alert("Please select the ppsize image");
+        submit_flag = false;
+      }
+	  
+	  if($("#fdate").val()=="" && submit_flag){
+        alert("Please select volunteer enrolment date");
+        submit_flag = false;
+      }
+	  
+	  
+	 if($("#pdate").val()=="" && submit_flag){
+        alert("Please enter alternative contact number");
+        submit_flag = false;
+      }
+	  
+	  if($("#volkeywords").val()=="" && submit_flag){
+        alert("Please enter volunteer Key Words");
+        submit_flag = false;
+      }
+	  
+	  if($("#volmetadesc").val()=="" && submit_flag){
+        alert("Please enter volunteer Meta Description");
+        submit_flag = false;
+      }
       
 
       if(submit_flag)
@@ -69,7 +205,8 @@ $development_region=getAllDevelopmentRegion();
 ?>
 <body>
 <form action="process/process_add_reg_vol_profile.php" method="post" enctype="multipart/form-data" name="form1" id="form1" class="bordersize">
-  <fieldset>
+ <input type="hidden" name="page" id="page" value="view_all_profile">  
+<fieldset>
     <legend class="toptitle">Add New Profile</legend>
     <table width="98%" border="0" align="left" cellpadding="0" cellspacing="0">
       <tr>
@@ -151,7 +288,7 @@ $development_region=getAllDevelopmentRegion();
         <td align="left">        <input type="text" name="city" id="city" class="formfprall" /></td>
       </tr>
       <tr>
-        <th align="left" valign="middle" scope="row">Development Region</th>
+        <th align="left" valign="middle" scope="row">Development Region/ State</th>
         <td align="left">        <input type="text" name="dregion" id="dregion" class="formfprall"/></td>
       </tr>
       <tr>
@@ -197,13 +334,13 @@ $development_region=getAllDevelopmentRegion();
         <th height="28" colspan="2" align="left" valign="middle" scope="row">Working Experiance</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="ckeditor" name="wexp" id="wexp" cols="45" rows="5" class="formforshort"></textarea></th>
+        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="formcontforedit textck" name="wexp" id="wexp" cols="45" rows="5" class="formforshort"></textarea></th>
       </tr>
       <tr>
         <th height="28" colspan="2" align="left" valign="middle" scope="row">Why are you intrested to work with COCAP</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="ckeditor" name="why" id="why" cols="45" rows="5" class="formforshort"></textarea></th>
+        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="formcontforedit textck" name="why" id="why" cols="45" rows="5" ></textarea></th>
       </tr>
       
       <tr>
@@ -335,34 +472,34 @@ $development_region=getAllDevelopmentRegion();
       </tr>
       <tr>
         <th align="left" valign="middle" scope="row"><p>Voluntarism To </p></th>
-        <td align="left"><input type="date" name="tdate" id="datepicker2" class="formfprall"/></td>
+        <td align="left"><input type="date" name="tdate" id="datepicker2" class="formfprall" disabled="disabled"/></td>
       </tr>
-      <tr>
+      <!--<tr>
         <th align="left" valign="middle" scope="row">Posted Date </th>
-        <td align="left"><input type="date" name="pdate" id="datepicker3" class="formfprall" /></td>
-      </tr>
+        <td align="left"><input type="date" name="pdate" id="datepicker3" class="formfprall" disabled="disabled" /></td>
+      </tr> -->
       <tr>
         <th align="left" valign="middle" scope="row">Update Date </th>
-        <td align="left"><input type="date" name="udate" id="datepicker4" class="formfprall"/></td>
+        <td align="left"><input type="date" name="udate" id="datepicker4" class="formfprall" disabled="disabled"/></td>
       </tr>
       <tr>
         <th colspan="2" align="left" valign="middle" scope="row">Volunteer Key Words</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="ckeditor" name="volkeywords" id="volkeywords" cols="45" rows="5" class="formforshort"></textarea></th>
+        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="formcontforedit textck" name="volkeywords" id="volkeywords" cols="45" rows="5"></textarea></th>
       </tr>
       <tr>
         <th colspan="2" align="left" valign="middle" scope="row">Volunteer Meta Description</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="ckeditor" name="volmetadesc" id="volmetadesc" cols="45" rows="5" class="formforshort"></textarea></th>
+        <th colspan="2" align="left" valign="middle" scope="row">        <textarea class="formcontforedit textck" name="volmetadesc" id="volmetadesc" cols="45" rows="5" ></textarea></th>
       </tr>
       <tr>
         <th colspan="2" scope="row"><input type="submit" name="cmdupdate" id="cmdupdate" class="boxforcheek" value="Submit">
         <input type="submit" name="cmdreset" id="cmdreset" class="boxforcheek" value="Cancel"></th>
       </tr>
     </table>
-    <p>&nbsp;</p>
+   
   </fieldset>
 </form>
 </body>

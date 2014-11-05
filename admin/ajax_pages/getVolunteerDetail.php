@@ -6,3 +6,4 @@ $res = mysql_query($sql) or die(mysql_error());
 $row=mysql_fetch_assoc($res);
 echo $row['first_name']." ".$row['middle_name']." ".$row['last_name'];
 ?>
+

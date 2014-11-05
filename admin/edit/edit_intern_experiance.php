@@ -9,7 +9,18 @@ $getvol=getAllInterns();
 $getusr=getAllusers();
 
 //prepare the sql to get a page record depending on pageid
-$sql  = " SELECT * FROM tbl_exp WHERE exp_id = '$pageid' ";
+$sql  = " SELECT 
+    te.exp_id,
+    te.exp_desc,
+    te.interns_id,
+    ti.intern_name,
+    te.interns_id,
+    te.user_id,
+    te.posted_date,
+    te.updated_date
+FROM tbl_exp te 
+join tbl_interns ti on(ti.interns_id=te.interns_id)
+WHERE te.exp_id = '$pageid' ";
 //execute the query
 $res = mysql_query($sql);// or die(mysql_error());
 //since only a single record is obtained:
@@ -62,10 +73,25 @@ $( "#datepicker1" ).datepicker();
 
 <body>
 <form name="form1" method="post" action="process_edit/pocess_edit_int_experiance.php" class="bordersize">
-  <fieldset>
+<input type="hidden" name="page" id="page" value="list_of_all_intern_experiance">  
+<fieldset>
     <legend class="toptitle"> Edit Experiance</legend>
     <table width="42%" border="0" cellpadding="0">
-     
+     <tr>
+        <th width="33%" align="left" scope="row">Volunteer ID</th>
+        <td><?php echo $row['interns_id']?></td>
+    </tr>
+
+    <tr>
+        <th width="33%" align="left" scope="row">Volunteer Name</th>
+        <td><?php echo $row['intern_name']?></td>
+    </tr>
+
+    <tr>
+        <th>&nbsp;</th>
+        <td></td>
+    </tr>   
+       
       <!--<tr>
         <th width="33%" align="left" scope="row">Choose Volunteer ID</th>
         <td><select name="chvolid" id="chvolid" class="boxforcont">
@@ -103,7 +129,7 @@ $( "#datepicker1" ).datepicker();
         <th colspan="2" align="left" scope="row">Area  of experiance including role and date</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="acont" id="acont" class="formcont" placeholder="Write like: Conducted two days training on conflict management and positive thinking as the resource person on August 23, 2014." cols="45" rows="5"><?php echo $row['exp_desc']; ?></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="formcontforedit textck" name="acont" id="acont" placeholder="Write like: Conducted two days training on conflict management and positive thinking as the resource person on August 23, 2014." cols="45" rows="5"><?php echo $row['exp_desc']; ?></textarea></th>
       </tr>
       <tr>
         <th align="left" scope="row">Posted date</th>
@@ -118,7 +144,7 @@ $( "#datepicker1" ).datepicker();
         <td align="left"><input type="submit" name="cmdReset" id="cmdReset" class="boxforcheek" value="Reset"></td>
       </tr>
     </table>
-    <p>&nbsp;</p>
+ 
   </fieldset>
 </form>
 </body>

@@ -3,7 +3,10 @@
 $pageid = isset($_GET['pageid']) ? $_GET['pageid'] : '';
 //conenct to the datbase
 require_once('../functions/db_connect.php');
+require_once('../functions/contribution_function.php');
 connect_db();
+
+$development_region=getAllDevelopmentRegion();
 
 //prepare the sql to get a page record depending on pageid
 $sql  = " SELECT * FROM  tbl_interns WHERE interns_id = '$pageid' ";
@@ -80,7 +83,9 @@ $( "#datepicker4" ).datepicker();
 
 <body>
 <form action="process_edit/process_edit_intern_profile.php" method="post" enctype="multipart/form-data" name="form1" id="form1" class="bordersize">
-  <fieldset>
+ <input type="hidden" name="page" id="page" value="list_of_intern_profile">  
+
+<fieldset>
     <legend class="toptitle">Edit Intern Profile</legend>
     <table width="100%" border="0" align="left" dir="ltr">
       <!--<tr>
@@ -110,12 +115,16 @@ $( "#datepicker4" ).datepicker();
       <tr>
         <th align="left" scope="row">Applying for</th>
         <td><select name="applyingfor" id="applyingfor" class="boxforcheek">
-          <option value="0" <?php echo ($row['apply_for'] == 0) ? ' selected="selected" ' : '';?>>Eastern Regional Secretariat</option>
-          <option value="1" <?php echo ($row['apply_for'] == 1) ? ' selected="selected" ' : '';?>>Central Regional Secretariat</option>
-          <option value="2" <?php echo ($row['apply_for'] == 2) ? ' selected="selected" ' : '';?>>Western Regional Secretariat</option>
-          <option value="3" <?php echo ($row['apply_for'] == 3) ? ' selected="selected" ' : '';?>>Mid-Western Regional Secretariat</option>
-          <option value="4" <?php echo ($row['apply_for'] == 4) ? ' selected="selected" ' : '';?>>Far-Western Regional Secretariat</option>
-          <option value="5" <?php echo ($row['apply_for'] == 5) ? ' selected="selected" ' : '';?>>National Secretariat</option>
+          
+            <?php
+              foreach ($development_region as $dev_row) {
+                  if($dev_row['code']==$row['apply_for'])
+                    $sel="selected";
+                  else
+                     $sel=""; 
+                ?>
+                <option value="<?php echo $dev_row['code']?>" <?php echo $sel;?> ><?php echo $dev_row['name']?></option>    
+             <?php }?>
         </select></td>
       </tr>
       <tr>
@@ -248,7 +257,7 @@ $( "#datepicker4" ).datepicker();
       </tr>
       <tr>
         <th align="left" scope="row">Posted Date</th>
-        <td><input type="date" name="pdate" id="datepicker1" class="formfprall" value="<?php echo $pdate; ?>"  /></td> 
+        <td><input type="date" name="pdate" id="datepicker1" class="formfprall" value="<?php echo $pdate; ?>" disabled="disabled"  /></td> 
       </tr>
       <tr>
         <th align="left" scope="row">Updated Date</th>

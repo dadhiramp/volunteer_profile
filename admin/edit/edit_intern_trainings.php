@@ -9,7 +9,17 @@ $getvol=getAllInterns();
 $getusr=getAllusers();
 
 //prepare the sql to get a page record depending on pageid
-$sql  = " SELECT * FROM tbl_trainings WHERE training_id = '$pageid' ";
+$sql  = " SELECT 
+    tt.training_id,
+    tt.name_of_training,
+    tt.interns_id,
+    ti.intern_name,
+    tt.user_id,
+    tt.posted_date,
+    tt.updated_date
+FROM tbl_trainings tt 
+join tbl_interns ti on(ti.interns_id=tt.interns_id)
+WHERE tt.training_id = '$pageid' ";
 //execute the query
 $res = mysql_query($sql);// or die(mysql_error());
 //since only a single record is obtained:
@@ -61,9 +71,26 @@ $( "#datepicker1" ).datepicker();
 
 <body>
 <form name="form1" method="post" action="process_edit/process_edit_int_trainings.php" class="bordersize">
-  <fieldset>
+<input type="hidden" name="page" id="page" value="list_of_all_intern_training">  
+
+<fieldset>
     <legend class="toptitle"> Edit Training</legend>
     <table width="42%" border="0" cellpadding="0">
+    
+    <tr>
+        <th width="33%" align="left" scope="row">Volunteer ID</th>
+        <td><?php echo $row['interns_id']?></td>
+    </tr>
+
+    <tr>
+        <th width="33%" align="left" scope="row">Volunteer Name</th>
+        <td><?php echo $row['intern_name']?></td>
+    </tr>
+
+    <tr>
+        <th>&nbsp;</th>
+       
+    </tr> 
      
       <!--<tr>
         <th width="33%" align="left" scope="row">Choose Volunteer ID</th>
@@ -102,7 +129,7 @@ $( "#datepicker1" ).datepicker();
         <th colspan="2" align="left" scope="row">Name of trainings including organizer, place and date</th>
       </tr>
       <tr>
-        <th colspan="2" align="left" scope="row"><textarea class="ckeditor" name="acont" id="acont" class="formcont" placeholder="Write like: Capacity development training on report writing organized by COCAP from August 14 -20, 2014" cols="45" rows="5"><?php echo $row['name_of_training']; ?></textarea></th>
+        <th colspan="2" align="left" scope="row"><textarea class="formcontforedit textck" name="acont" id="acont"  placeholder="Write like: Capacity development training on report writing organized by COCAP from August 14 -20, 2014" cols="45" rows="5"><?php echo $row['name_of_training']; ?></textarea></th>
       </tr>
       <tr>
         <th align="left" scope="row">Posted date</th>
@@ -117,7 +144,7 @@ $( "#datepicker1" ).datepicker();
         <td align="left"><input type="submit" name="cmdReset" id="cmdReset" class="boxforcheek" value="Reset"></td>
       </tr>
     </table>
-    <p>&nbsp;</p>
+  
   </fieldset>
 </form>
 </body>
