@@ -152,10 +152,16 @@ function getAllparticipation(){
 	close_db($con);
 }
 //function participation for intern
-function getAllparticipationforint(){
+function getAllparticipationforint($intern_id=""){
 	$con = connect_db();
 
 	$sql = "SELECT * FROM   tbl_interns i INNER JOIN tbl_participatn p ON i.interns_id  = p.interns_id   ";
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and tdr.code=".$_SESSION['secretariat'];
+	} 
+	if(trim($intern_id)!=""){
+		$sql.=" and i.interns_id=".$intern_id;
+	}
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -249,10 +255,18 @@ function getAlltraining(){
 
 
 //function trainings for int
-function getAlltrainingforint(){
+function getAlltrainingforint($intern_id=""){
 	$con = connect_db();
 	
-	$sql = "SELECT * FROM  tbl_interns i INNER JOIN tbl_trainings t ON i.interns_id  = t.interns_id   ";
+	$sql = "SELECT * FROM  tbl_interns i INNER JOIN tbl_trainings t ON (i.interns_id  = t.interns_id)
+	join tbl_development_region tdr on (tdr.code=i.apply_for) where 1=1 ";
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and tdr.code=".$_SESSION['secretariat'];
+	} 
+	if(trim($intern_id)!=""){
+		$sql.=" and i.interns_id=".$intern_id;
+	}
+	
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -290,9 +304,16 @@ function getAllexp(){
 }
 
 //function experiance for intern 
-function getAllexpforint(){
+function getAllexpforint($intern_id=""){
 	$con = connect_db();
-	$sql = "SELECT * FROM   tbl_interns i INNER JOIN tbl_exp e ON i.interns_id  = e.interns_id   ";
+	$sql = "SELECT * FROM   tbl_interns i INNER JOIN tbl_exp e ON (i.interns_id  = e.interns_id)
+	join tbl_development_region tdr on (tdr.code=i.apply_for) where 1=1 ";
+	if($_SESSION['access_level']==0 && trim($_SESSION['access_level'])!=""){
+		$sql.=" and tdr.code=".$_SESSION['secretariat'];
+	} 
+	if(trim($intern_id)!=""){
+		$sql.=" and i.interns_id=".$intern_id;
+	}
 	$res = mysql_query($sql) or trigger_error (mysql_error()) ;
 	$numRows = mysql_num_rows($res);
 	$data = array();
@@ -305,7 +326,6 @@ function getAllexpforint(){
 	return $data; // eithr blank or full with tcontent
 	close_db($con);
 }
-
 //function attitide
 function getAllbehav(){
 	$con = connect_db();

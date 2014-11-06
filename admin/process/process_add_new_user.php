@@ -5,16 +5,18 @@ session_start();
 require_once('../../functions/db_connect.php');
 
 ///load the form values
+$page=$_POST['page'];
 $fname = mysql_real_escape_string($_POST['fname']);
 $position = mysql_real_escape_string($_POST['position']);
 $email = mysql_real_escape_string($_POST['email']);
 $pass = sha1(mysql_real_escape_string($_POST['pass']));
 
 $uname = mysql_real_escape_string($_POST['uname']);
-$pdate = mysql_real_escape_string($_POST['pdate']);
+$pdate = date('Y-m-d');
+/*$pdate = mysql_real_escape_string($_POST['pdate']);
 $pdate = explode('/', $pdate);
 $pdate = $pdate[2].'-'.$pdate[0] .'-'.$pdate[1];///yyyy-mm-dd
-
+*/
 
 $update = mysql_real_escape_string($_POST['update']);
 $update = explode('/', $update);
@@ -66,12 +68,12 @@ if($affRows > 0){
 //success in deleting  the record
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&sucess='.base64_encode('CONGRATULATIONS  <br />The user has been regesterd').'";
+	window.location = "../../includes/response.php?page='.$page.'&sucess='.base64_encode('CONGRATULATIONS  <br />The user has been regesterd').'";
 	</script>';
 }else{
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&error='.base64_encode('SORRY !<br /> The user has been not regesterd').'";
+	window.location = "../../includes/response.php?page='.$page.'&error='.base64_encode('SORRY !<br /> The user has been not regesterd').'";
 	</script>';
 }
 

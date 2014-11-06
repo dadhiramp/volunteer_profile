@@ -57,7 +57,9 @@ $( "#datepicker1" ).datepicker();
 
 <body>
 <form action="process_edit/process_edit_user.php" method="post" enctype="multipart/form-data" name="form1" id="form1" class="bordersize">
-  <fieldset>
+  <input type="hidden" name="page" id="page" value="list_of_all_user">  
+
+ <fieldset>
     <legend class="toptitle">Edit User</legend>
     <table width="58%" border="0">
       <tr>
@@ -117,7 +119,7 @@ $( "#datepicker1" ).datepicker();
       
       <tr>
         <th align="right" scope="row"><input type="submit" name="cmdSubmit" id="cmdSubmit" value="Update"  class="boxforcheek"/> <input type="hidden" id="id" name="pid" value="<?php echo $row['user_id']; ?>" /></th>
-        <td><input type="submit" name="cmdReset" id="cmdReset" value="Submit" class="boxforcheek" /></td>
+        <td><input type="submit" name="cmdReset" id="cmdReset" value="Reset" class="boxforcheek" /></td>
       </tr>
     </table>
     <p>&nbsp;</p>

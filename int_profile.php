@@ -3,6 +3,12 @@ require_once('functions/db_connect.php');
 require_once('functions/contribution_function.php');
 $intern_data=getAllinternIndividual($_GET['id']);
 $contribution_data=getAllcontributionforint($_GET['id']);
+$participation_data=getAllparticipationforint($_GET['id']);
+$training_data=getAlltrainingforint($_GET['id']);
+$experience_data =getAllexpforint($_GET['id']);
+
+
+
 $row=$intern_data[0];
 
 
@@ -90,18 +96,18 @@ $row=$intern_data[0];
       <div id="volwhome1">
       
         <div class="proleftlast">
-     <img src="cocap_vol/images/karina.gif"/>
+     <img src=""uploads/<?php echo $row['pp_image']?>" height="130" width="132"/>
         </div>
         <div class="prorightlast">
-       <h3 class="fontblw">Bandana Karki</h3>
+       <h3 class="fontblw"><?php echo $row['intern_name']?></h3>
      
 			
             <ul class="volun">
           <li class="cuid"><?php echo $row['interns_id']?></li>
-                <li class="home">Biratnagar,Nepal</li>
-                <li class="call">00977 9842463584</li>
-                <li class="email">deardeepakg@gmail.com</li>
-                <li class="flag">Western Development Region</li>
+                <li class="home"><?php echo $row['intern_address']?></li>
+                <li class="email"><?php echo $row['email']?></li>
+                <li class="callt"><?php echo $row['gread']?></li>
+                <li class="flagt2"><?php echo $row['college']?></li>
                
             </ul>
         
@@ -109,11 +115,10 @@ $row=$intern_data[0];
         <div class="comintro">
         <ul>
         <li>
-        <p><strong>Education:</strong></p>
         <p><strong>Enrollment Date:</strong></p>
-        <p><strong>Permanent Address:</strong></p>
-        <p><strong>Occupation:</strong></p>
-        <p><strong>Status at COCAP:</strong></p>
+        <p><strong>Collage Address:</strong></p>
+        <p><strong>Supervisor Name:</strong></p>
+        
        
         </li>
         </ul>
@@ -122,11 +127,10 @@ $row=$intern_data[0];
         <div class="comright">
         <ul>
         <li>
-        <p> Master Degree</p>
-        <p>Jan 15, 2014</p>
-        <p>Biratnagar, Morang</p>
-        <p>Social Work</p>
-         <p>Volunteer Core Group Coordinator</p>
+        <p> <?php echo $row['internship_from']?></p>
+        <p><?php echo $row['collage_address']?></p>
+        <p><?php echo $row['college_contact_person']?></p>
+      
        
         </li>
               
@@ -138,8 +142,8 @@ $row=$intern_data[0];
         <div id="leftpanel">
 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1">PARTICIPATION</a></li>
-<li class="ui-state-default ui-corner-top"><a href="#tabs-2">CONTRIBUTION</a></li>
+<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1">CONTRIBUTION</a></li>
+<li class="ui-state-default ui-corner-top"><a href="#tabs-2">PARTICIPATION</a></li>
 
 <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-3">TRAINING RECEIVED </a></li>
 <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-4">EXPERIENCE</a></li>
@@ -155,11 +159,16 @@ $row=$intern_data[0];
 		                    
 					                    
 <div class="servicesPackages">
-<div class="servicesContents">
-<p class="heightfix">
-Designated Nepal’s first Himalayan national park in 1971, Langtang is a spectacular valley sandwiched between the main Himalayan ...</p><br>
+<?php 
+$count=1;
+foreach($participation_data as $participate){
+	
+	echo $participate['name_of_program'];
+	
+	
+	}
 
-</div>
+?> 
 
 </div>
 
@@ -178,19 +187,24 @@ foreach($contribution_data as $contribute){
 	
 	}
 
-?> </div>
+?> 
+</div>
 </div>
 
 <div id="tabs-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
 		                    
 					                    
 <div class="servicesPackages">
-<div class="servicesContents">
-<p class="heightfix">
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p><br>
+<?php 
+$count=1;
+foreach($training_data as $training){
+	
+	echo $training['name_of_training'];
+	
+	
+	}
 
-</div>
-
+?> 
 </div>
 
 
@@ -200,11 +214,16 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p><br>
 		                    
 					                    
 <div class="servicesPackages">
-<div class="servicesContents">
-<p class="heightfix">
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p><br>
+<?php 
+$count=1;
+foreach($experience_data as $experience){
+	
+	echo $experience['exp_desc'];
+	
+	
+	}
 
-</div>
+?> 
 
 </div>
 

@@ -19,17 +19,17 @@ $(document).ready(function(){
 
   $(document).on("change","#chvolid",function(){
     if($(this).val()=="")
-      $("#volunteer_name").html("");
+      $("#intern_name").html("");
     if($(this).val()!=""){
       $.ajax({
              type: "POST",
-             url: "ajax_pages/getVolunteerDetail.php", 
-             data: {volunteer_id: $(this).val()},
+             url: "ajax_pages/getInternsDetail.php", 
+             data: {interns_id: $(this).val()},
              dataType: "html",  
              cache:false,
              success: 
                   function(data){
-                      $("#volunteer_name").html(data);
+                      $("#intern_name").html(data);
                   }
               });// you have missed this bracket
          return false;
@@ -40,13 +40,20 @@ $(document).ready(function(){
   $(document).on("submit","#form1",function(e){
       var check=true;
       if($("#chvolid").val()==""){
-        alert("Please select volunteer id");
+        alert("Please select intrn ID");
         check=false;
       }
       if($("#datepicker").val()=="" && $("#datepicker1").val()=="" && check){
         alert("Please select date");
         check=false;
-      } 
+		
+		
+		}
+      if($("#agrade").val()=="" && $("#agrade").val()=="" && check){
+        alert("Please select Status");
+        check=false;
+      
+	  } 
       if(!check){
         e.preventDefault();
         return false;
@@ -59,11 +66,12 @@ $(document).ready(function(){
 </script>
 
 
+
 <!--date picker ends -->
 </head>
 
 <body>
-<form name="form1" method="post" action="process/process_add_int_attitude.php" class="bordersize">
+<form name="form1" method="post"  id="form1"action="process/process_add_int_attitude.php" class="bordersize">
 <input type="hidden" name="page" id="page" value="list_of_intern_attitude">  
 <fieldset>
     <legend class="toptitle">Add New Attitude </legend>
@@ -120,6 +128,7 @@ $(document).ready(function(){
       <tr>
         <th align="left" scope="row">Attitude Grade</th>
         <td><select name="agrade" id="agrade" class="boxforcont">
+           <option value="">--Select Intern Status--</option>
           <option value="0">Good</option>
           <option value="0">Best</option>
           <option value="1">Better </option>

@@ -599,4 +599,15 @@ color: #ccc;
 	color:black;
 	font-size:14px;
 	}
+	
+.textpr
+{
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:14px;
+	font-weight:normal;
+	text-align:justify;
+	line-height:19px;
+
+	}
+	
 /*code for form ends */

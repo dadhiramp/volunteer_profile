@@ -89,7 +89,7 @@ ddaccordion.init({
     
     <div class="right_content">            
         
-    <h2>List of volunteer Experience  </h2> 
+    <h2>List of Intern Experience  </h2> 
                     
                     
 <table id="rounded-corner" summary="2007 Major IT Companies' Profit">

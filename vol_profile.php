@@ -122,7 +122,7 @@ $row=$volunteer_data[0];
         <p><strong>Enrollment Date:</strong></p>
         <p><strong>Permanent Address:</strong></p>
          <p><strong>Temporary Address :</strong></p>
-        <p><strong>Occupation:</strong></p>
+        <!--<p><strong>Occupation:</strong></p> -->
        
        
         </li>
@@ -135,7 +135,9 @@ $row=$volunteer_data[0];
         <p><?php echo $row['voluntarism_from']?></p>
         <p><?php echo $row['permanent_address'].",".$row['country']?></p>
         <p><?php echo $row['temporary_address']?></p>
-         <p><?php echo $row['occupation']?></p>
+        <p><?php if ($_SESSION["occupation"] =='0'){ echo'Student';}
+		else if($_SESSION["secretariat"] =='1'){ echo'Job holder';}
+		else if($_SESSION["secretariat"] =='2'){ echo'Others';} ?></p>
        
         </li>
               

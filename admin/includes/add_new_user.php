@@ -20,6 +20,58 @@ $(function() {
 $( "#datepicker1" ).datepicker();
 });
 
+
+$(document).ready(function (){
+  $("#form1").submit(function(e){
+      var submit_flag = true;
+      if($("#fname").val()==""){
+        alert("Please enter user full name");
+        submit_flag = false;
+      }
+
+      if($("#position").val()=="" && submit_flag){
+        alert("Please enter user position");
+        submit_flag = false;
+      }
+	  
+	  if($("#rsec").val()=="" && submit_flag){
+        alert("Please select the regional secretariat");
+        submit_flag = false;
+      }
+	  if($("#email").val()=="" && submit_flag){
+        alert("Please enter user email address");
+        submit_flag = false;
+      }
+	  if($("#uname").val()=="" && submit_flag){
+        alert("Please enter user name");
+        submit_flag = false;
+      }
+	  if($("#pass").val()=="" && submit_flag){
+        alert("Please enter password");
+        submit_flag = false;
+      }
+	  if($("#alevel").val()=="" && submit_flag){
+        alert("Please select access level");
+        submit_flag = false;
+      }
+	  
+	  if($("#uimage").val()=="" && submit_flag){
+        alert("Please browse user image");
+        submit_flag = false;
+      }
+	  
+	  
+	  
+      if(submit_flag)
+        return true;
+      else {
+        e.preventDefault();
+        return false;
+      }
+
+      console.log("test");
+  });
+});
 </script>
 
 <!--date picker ends -->
@@ -27,7 +79,8 @@ $( "#datepicker1" ).datepicker();
 
 <body>
 <form action="process/process_add_new_user.php" method="post" enctype="multipart/form-data" name="form1" id="form1" class="bordersize">
-  <fieldset>
+ <input type="hidden" name="page" id="page" value="list_of_all_user">  
+<fieldset>
     <legend class="toptitle">Add New User</legend>
     <table width="58%" border="0">
       <tr>
@@ -41,6 +94,7 @@ $( "#datepicker1" ).datepicker();
       <tr>
         <th align="left" scope="row">Regional Secretariat </th>
         <td><select name="rsec" id="rsec" class="boxforcheek">
+         <option value="0" selected="selected">--Select Regional Secretariat--</option>
           <option value="0">Eastern Regional Secretariat</option>
           <option value="1">Centeral Regional Secretart</option>
           <option value="2">Western Regional Secretariat</option>
@@ -64,26 +118,35 @@ $( "#datepicker1" ).datepicker();
       <tr>
         <th align="left" scope="row">Access Level</th>
         <td><select name="alevel" id="alevel" class="boxforcheek">
+         <option value="0" selected="selected">--Select User Level--</option>
           <option value="0">Normal</option>
           <option value="1">User</option>
           <option value="2">Super Admin</option>
         </select></td>
       </tr>
-      <tr>
+       <tr>
+        <th>&nbsp;</th>
+       
+    </tr> 
+      <!--<tr>
         <th align="left" scope="row">Posted Date</th>
         <td><input type="text" name="pdate" id="datepicker" class="formfprall" /></td>
-      </tr>
-      <tr>
+      </tr> -->
+      <!--<tr>
         <th align="left" scope="row">Update Date </th>
         <td><input type="text" name="update" id="datepicker1" class="formfprall" /></td>
-      </tr>
+      </tr> -->
       <tr>
         <th align="left" scope="row">Image </th>
         <td><input type="file" name="uimage" id="uimage" /></td>
       </tr>
+       <tr>
+        <th>&nbsp;</th>
+       
+    </tr> 
       <tr>
         <th align="right" scope="row"><input type="submit" name="cmdSubmit" id="cmdSubmit" value="Submit"  class="boxforcheek"/></th>
-        <td><input type="submit" name="cmdReset" id="cmdReset" value="Submit" class="boxforcheek" /></td>
+        <td><input type="submit" name="cmdReset" id="cmdReset" value="Reset" class="boxforcheek" /></td>
       </tr>
     </table>
     <p>&nbsp;</p>

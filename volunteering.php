@@ -49,13 +49,14 @@ $records_per_page                                       //  this many records
      
         <div id="wholeborder">
         <div id="volwhome2">
-          <h3 class="voling">Yes</h3>
-          <p>yesxxxxxxxxxxxxxxxxxxx
-          xxxxxxxxxxxxxxxxxxxxxxxxxxx
-          xxxxxxxxxxxxxxxxxxxxxxxxx
-          xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          xxxxxxxxxxxxxxxxx
-          xxxxxxxxxxxxxxx</p>
+          <h3 class="voling">Volunteering with COCAP</h3>
+          <p class="textpr"> Collective Campaign for Peace (COCAP) is a campaign based organization.  It aims to provide a common space for its members, volunteers and friends to collectively engage in the pursuit of peace, human rights and justice in Nepal. It organizes national/regional level campaigns and programs on the issues of Human Rights, Nonviolent conflict transformation and peace building,  Social Security/Protection and Capacity Building in coordination with its member organizations and other like-minded organizations. Volunteers form the backbone of COCAP as the organization relies on its dedicated and self motivated volunteers to make its programs successful.<br><br>
+ 
+To facilitate the communication and coordination with the organization, volunteers elect their own executive committee called Volunteers Core Group and its coordinator. Elected core groups have been formed in national and all regional secretariats. A volunteer also represents in the executive board.<br><br>
+ 
+COCAP enjoys the encouraging support of large number of volunteers from within and outside the country. To volunteer at COCAP, you don’t need to possess any qualifications but your dedication and commitment to contribute in creating socially just, democratic and inclusive society. If you have the vigor, you are welcome to volunteer at any of our secretariats – National at Kathmandu or regionals – far-western at Mahendranagar, Mid-western at Nepalgunj, Western at Pokhara, Central at Hetauda and Eastern at Biratnagar.
+ 
+Please contact any of our secretariats or fillup the application form and send it to the respective secretariat through email or post.</p>
           </div> <!--vol whole ends -->
           </div>
    

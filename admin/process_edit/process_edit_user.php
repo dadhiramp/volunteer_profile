@@ -4,6 +4,7 @@ session_start();
 require_once('../../functions/db_connect.php');
 $conxn=connect_db();
 //load the form values
+$page=$_POST['page'];
 $fname = mysql_real_escape_string($_POST['fname']);
 $position = mysql_real_escape_string($_POST['position']);
 $email = mysql_real_escape_string($_POST['email']);
@@ -87,12 +88,12 @@ if($affRows > 0){
 //success in deleting  the record
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&sucess='.base64_encode('CONGRATULATIONS  <br />Your update has been successful.').'";
+	window.location = "../../includes/response.php?page='.$page.'&sucess='.base64_encode('CONGRATULATIONS  <br />Your update has been successful.').'";
 	</script>';
 }else{
 	echo '<script type="text/javascript" language="javascript">
 	
-	window.location = "../../includes/response.php?page=pages&error='.base64_encode('SORRY !<br /> Unfortunately your update has not been successful.').'";
+	window.location = "../../includes/response.php?page='.$page.'&error='.base64_encode('SORRY !<br /> Unfortunately your update has not been successful.').'";
 	</script>';
 }
 

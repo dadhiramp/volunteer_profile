@@ -24,6 +24,7 @@ if($numRows > 0){
 $_SESSION['full_name'] = $row['full_name'];
 $_SESSION['access_level'] = $row['access_level'];
 $_SESSION['secretariat'] = $row['secretariat'];
+$_SESSION['occupation'] = $row['occupation'];
 $_SESSION['user_id'] = $row['user_id'];	
 $_SESSION['username'] = $uname; // created a session variable called username
 

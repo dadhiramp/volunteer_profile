@@ -49,9 +49,47 @@ $records_per_page                                       //  this many records
      
         <div id="wholeborder">
         <div id="volwhome2">
-          <h3>Collective Campaign for Peace</h3>
-          <p>Kathmandu, Nepal</p>
+          <h3 class="textconthed">Collective Campaign for Peace (COCAP)</h3>
+           <p class="textcontps">National Secretariat</p>
+          <p class="textcontp">Sahayog Marg (House No. 18), Anamnaga</p>
+          <p class="textcontp">Kathmandu, Nepal</p>
+           <p class="textcontp">Phone No. : 00977-1-4265143</p>
+            <p class="textcontp">E-mail : info@cocap.org.np </p>
+             
+<br>
   
+   
+           <p class="textcontps">Eastern Regional Secretariat</p>
+          <p class="textcontp">Panchali, Biratnagar, Morang</p>
+           <p class="textcontp">Contact No: +977-21-470565</p>
+            <p class="textcontp">Email: eastern@cocap.org.np</p>
+            <br>
+            <p class="textcontps">Central  Regional Secretariat</p>
+          <p class="textcontp">Hetauda Municipality, ward no 2,</p>
+           <p class="textcontp">Siddhartha Path, Makwanpur</p>
+            <p class="textcontp">Contact no: +977 57526865</p>
+            <p class="textcontp">Email: central@cocap.org.np</p>
+            
+            <br>
+            <p class="textcontps">Western Regional Secretariat</p>
+          <p class="textcontp">Annapurna Tole 7, Ratnachowk,</p>
+           <p class="textcontp">Pokhara, Kaski</p>
+            <p class="textcontp">Contact no: +977 61 465639</p>
+            <p class="textcontp">Email: western@cocap.org.np</p>
+            
+            <br>
+            <p class="textcontps">Mid western Regional Secretariat</p>
+          <p class="textcontp">Nepalgunj 16, Belaspure</p>
+           <p class="textcontp">Srijana Nagar Marg, Nepalgunj, Banke</p>
+            <p class="textcontp">Contact no: +977 81 523031</p>
+            <p class="textcontp">Email: midwestern@cocap.org.np</p>
+            
+            <br>
+            <p class="textcontps">Far western Regional Secretariat</p>
+          <p class="textcontp">Bhim Dutta 18, Katan</p>
+           <p class="textcontp">Mahendranagar, Kanchanpur</p>
+            <p class="textcontp">Contact no: +977 99 520059</p>
+            <p class="textcontp">Email: farwestern@cocap.org.np</p>
           </div> <!--vol whole ends -->
           </div>
    
