@@ -1,6 +1,8 @@
 <?php
 require_once('functions/db_connect.php');
 require_once('functions/contribution_function.php');
+$view_count=manageCount($_SERVER['REMOTE_ADDR'],'',$_GET['id']);
+
 $intern_data=getAllinternIndividual($_GET['id']);
 $contribution_data=getAllcontributionforint($_GET['id']);
 $participation_data=getAllparticipationforint($_GET['id']);
@@ -88,7 +90,7 @@ $row=$intern_data[0];
 <div id="visitpro">
 <h3 class="vollast">Breif Introduction</h3>
   <div class="visit">
-       <a href="#">|800 VIEWED</a>
+       <a href="#"><?php if($view_count==1) echo $view_count." VIEW";else echo $view_count." VIEWS";?></a>
       </div> 
        
        </div> <!--visit pro ends -->

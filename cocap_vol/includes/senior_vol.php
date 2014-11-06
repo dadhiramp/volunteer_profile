@@ -1,13 +1,13 @@
 <?php
 require_once('functions/db_connect.php');
 require_once('functions/contribution_function.php');
-$volunteer_data=getAllvolunteers(NULL,1);
+$volunteer_data=getAllvolunteers(NULL,1,'Y');
 
 ?>
 
 
 <div id="senior_vol">
-      <a href="snrvol_short_list.php"><h3 class="vol2">SENEIOR VOLUNTEERS</h3></a>
+      <a href="snrvol_short_list.php"><h3 class="vol2">SENIOR VOLUNTEERS</h3></a>
           	<div class="vticker">
 	<ul>
      <?php foreach ($volunteer_data as $row) {?>

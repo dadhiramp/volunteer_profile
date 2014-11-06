@@ -4,7 +4,7 @@ require('cocap_vol/includes/header.php');
 require_once('functions/db_connect.php');
 require_once('pagination/Zebra_Pagination.php');
 require_once('functions/contribution_function.php');
-$intern_data=getAllInterns(NULL,0);
+$intern_data=getAllInterns('Y');
 
 $records_per_page = 13;
 // instantiate the pagination object

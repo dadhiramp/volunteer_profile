@@ -1,7 +1,7 @@
 <?php
 require_once('functions/db_connect.php');
 require_once('functions/contribution_function.php');
-$volunteer_data=getAllvolunteers(NULL,2);
+$volunteer_data=getAllvolunteers(NULL,2,'Y');
 ?>
 
 <div id="core_group">

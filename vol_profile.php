@@ -1,13 +1,14 @@
 <?php
 require_once('functions/db_connect.php');
 require_once('functions/contribution_function.php');
+# This function is used to manage the visitor count on the basis of IP
+$view_count=manageCount($_SERVER['REMOTE_ADDR'],$_GET['id']);
+
 $volunteer_data=getAllvolunteersIndividual($_GET['id']);
 $contribution_data=getAllcontribution($_GET['id']);
 $participation_dats=getAllparticipation($_GET['id']);
 $training_data=getAlltraining($_GET['id']);
 $experience_data=getAllexp($_GET['id']);
-
-
 $row=$volunteer_data[0];
 ?>
 
@@ -46,9 +47,9 @@ $row=$volunteer_data[0];
 
 
 <script>
-	$(function() {
-		$( "#tabs" ).tabs();
-	});
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
 </script>
 
 
@@ -56,9 +57,9 @@ $row=$volunteer_data[0];
 <script type="text/javascript" src="cocap_vol/js/tab_jquery-ui-1.8.18.custom.min.js"></script>
 
 <script>
-	$(function() {
-		$( "#tabs" ).tabs();
-	});
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
 </script>
 
 <!--js for tab ends-->
@@ -68,11 +69,11 @@ $row=$volunteer_data[0];
 <!--header ends -->
 
 
-	<!--head  -->
-	
+  <!--head  -->
+  
     <!--head ends -->
     <?php require('cocap_vol/includes/head.php'); ?>
-	<div id="wrapper">
+  <div id="wrapper">
        <?php require('cocap_vol/includes/nav.php'); ?>
       <!--nav -->
       
@@ -86,7 +87,7 @@ $row=$volunteer_data[0];
 <div id="visitpro">
 <h3 class="vollast">Breif Introduction</h3>
   <div class="visit">
-       <a href="#">|800 VIEWED</a>
+       <a href="#"><?php if($view_count==1) echo $view_count." VIEW";else echo $view_count." VIEWS";?></a>
       </div> 
        
        </div> <!--visit pro ends -->
@@ -95,13 +96,13 @@ $row=$volunteer_data[0];
       
         <div class="proleftlast">
   
-     	<img src="uploads/<?php echo $row['pp_image']?>" height="130" width="132"/>
+      <img src="uploads/<?php echo $row['pp_image']?>" height="130" width="132"/>
     
         </div>
         <div class="prorightlast">
        <h3 class="fontblw"><?php echo $row['first_name'].",".$row['middle_name'].",".$row['last_name']?></h3>
      
-			
+      
             <ul class="volun">
               
           <li class="cuid"><?php echo $row['volunteer_id']?></li>
@@ -121,10 +122,11 @@ $row=$volunteer_data[0];
         <li>
         <p><strong>Enrollment Date:</strong></p>
         <p><strong>Permanent Address:</strong></p>
-         <p><strong>Temporary Address :</strong></p>
-        <!--<p><strong>Occupation:</strong></p> -->
-       
-       
+        <p><strong>Temporary Address :</strong></p>
+        <p><strong>Occupation:</strong></p>
+        <?php if($row['volunteer_level']==2){?>        
+        <p><strong>Status at Core Group:</strong></p>
+        <?php }?>
         </li>
         </ul>
         </div>
@@ -135,9 +137,17 @@ $row=$volunteer_data[0];
         <p><?php echo $row['voluntarism_from']?></p>
         <p><?php echo $row['permanent_address'].",".$row['country']?></p>
         <p><?php echo $row['temporary_address']?></p>
-        <p><?php if ($_SESSION["occupation"] =='0'){ echo'Student';}
-		else if($_SESSION["secretariat"] =='1'){ echo'Job holder';}
-		else if($_SESSION["secretariat"] =='2'){ echo'Others';} ?></p>
+        <p><?php if ($row["occupation"] =='0'){ echo'Student';}
+    else if($row["occupation"] =='1'){ echo'Job holder';}
+    else if($row["occupation"] =='2'){ echo'Others';} ?></p>
+
+        <?php if($row['volunteer_level']==2){   
+          if($row['volunteer_status']==0)
+              echo "Volunteer Core Group Coordinator";
+          elseif ($row['volunteer_status']==1)
+              echo "Volunteer Core Group Member";
+        }?>
+
        
         </li>
               
@@ -163,10 +173,8 @@ $row=$volunteer_data[0];
 <?php 
 $count=1;
 foreach($contribution_data as $contribute){
-	echo $contribute['area_of_contribution'];
-	
-	
-	}
+  echo $contribute['area_of_contribution'];
+  }
 
 ?>  
 
@@ -177,16 +185,12 @@ foreach($contribution_data as $contribute){
   
   
 <div id="tabs-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-		                    
-					                    
 <div class="servicesPackages">
 <?php 
 $count=1;
 foreach($participation_dats as $participate){
-	echo $participate['name_of_program'];
-	
-	
-	}
+  echo $participate['name_of_program'];
+  }
 
 ?> 
 </div>
@@ -196,17 +200,12 @@ foreach($participation_dats as $participate){
 
 
 <div id="tabs-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-		                    
-					                    
 <div class="servicesPackages">
 <?php 
 $count=1;
 foreach($training_data as $training){
-	
-	echo $training['name_of_training'];
-	
-	
-	}
+  echo $training['name_of_training'];
+  }
 
 ?> 
 
@@ -216,16 +215,12 @@ foreach($training_data as $training){
 </div>
 
 <div id="tabs-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-		                    
-					                    
 <div class="servicesPackages">
 <?php 
 $count=1;
 foreach($experience_data as $experience){
-	echo $experience['exp_desc'];
-	
-	
-	}
+  echo $experience['exp_desc'];
+  }
 
 ?> 
 
@@ -246,8 +241,8 @@ foreach($experience_data as $experience){
       
       <!--footer -->
 
-	<!--footer ends -->
-	</div>
+  <!--footer ends -->
+  </div>
     </div>
     <?php require('cocap_vol/includes/footer.php'); ?>
         

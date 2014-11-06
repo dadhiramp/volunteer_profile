@@ -31,16 +31,20 @@ function addContribution($area_of_contribution,$role,$location, $date_from, $dat
 
 //get all blogs
 
-function getAllvolunteers($limit = '',$volunteer_level=null){
+function getAllvolunteers($limit = '',$volunteer_level=null,$display=""){
 	$con = connect_db();
 	$sql = "SELECT * FROM  tbl_volunteers where 1=1";
 	if($_SESSION['access_level']==0 and trim($_SESSION['access_level']) !="" && trim($_GET['page']) !=""){
 		$sql.=" and apply_for='".$_SESSION['secretariat']."' ";
 	}
 	if(trim($volunteer_level)!=""){
-		$sql.=" and volunteer_level=".$volunteer_level;	
+		$sql.=" and volunteer_level='".$volunteer_level."'";	
 	}
-	
+
+	if(trim($display)!=""){
+		$sql.=" and display='".$display."'";	
+	}
+
 	if($limit !=''){
 	$sql .= $limit;
 	}
@@ -103,12 +107,16 @@ function getAllusers(){
 	close_db($con);
 }
 
-function getAllInterns(){
+function getAllInterns($display=null){
 	$con = connect_db();
 	
 	$sql = "SELECT * FROM  tbl_interns where 1=1";
-	if($_SESSION['access_level']==0 and trim($_SESSION['access_level']) !=""){
+	if($_SESSION['access_level']==0 and trim($_SESSION['access_level']) !="" && trim($_GET['page']) !=""){
 		$sql.=" and apply_for='".$_SESSION['secretariat']."' ";
+	}
+
+	if(trim($display)!=""){
+		$sql.=" and display='".$display."'";	
 	}
 	if($limit !=''){
 	$sql .= $limit;
@@ -403,6 +411,48 @@ function getAllinternIndividual($interns_id=""){
 	}
 	
 	return $data; // eithr blank or full with tcontent
+	close_db($con);
+}
+function formatOutput($var){
+	echo "<pre>";
+	print_r($var);
+	echo "</pre>";
+}	
+
+function manageCount($ip_address,$volunteer_id=null,$interns_id=null){
+	$con = connect_db();
+	if(trim($interns_id)==""){
+		## This part is for volunteer only
+		$sql = "SELECT * FROM  tbl_vistercount_volunteer where ip_address='".$ip_address."' and volunteer_id='".$volunteer_id."'";
+		$res = mysql_query($sql) or trigger_error (mysql_error()) ;
+		$numRows = mysql_num_rows($res);
+		
+		if ($numRows==0) {
+			$sql="INSERT into tbl_vistercount_volunteer (ip_address,volunteer_id) values('".$ip_address."','".$volunteer_id."')";
+			$res = mysql_query($sql) or trigger_error(mysql_error());
+		}
+
+		$sql = "SELECT * FROM  tbl_vistercount_volunteer where volunteer_id='".$volunteer_id."'";
+		$res = mysql_query($sql) or trigger_error (mysql_error()) ;
+		$numRows = mysql_num_rows($res);
+		return $numRows;
+
+	}else if (trim($volunteer_id)=="") {
+		## This part is for interns only
+		$sql = "SELECT * FROM  tbl_vistercount_intern where ip_address='".$ip_address."' and interns_id='".$interns_id."'";
+		$res = mysql_query($sql) or trigger_error (mysql_error()) ;
+		$numRows = mysql_num_rows($res);
+		
+		if ($numRows==0) {
+			$sql="INSERT into tbl_vistercount_intern (ip_address,interns_id) values('".$ip_address."','".$interns_id."')";
+			$res = mysql_query($sql) or trigger_error(mysql_error());
+		}
+
+		$sql = "SELECT * FROM  tbl_vistercount_intern where interns_id='".$interns_id."'";
+		$res = mysql_query($sql) or trigger_error (mysql_error()) ;
+		$numRows = mysql_num_rows($res);
+		return $numRows;
+	}
 	close_db($con);
 }
 ?>
