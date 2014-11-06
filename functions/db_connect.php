@@ -3,7 +3,7 @@
  * TO connect with the database
  * 
  */
-function connect_db($host ='localhost', $user = 'root', $pwd = '', $db='db_cocap'){
+function connect_db($host ='localhost', $user = 'root', $pwd = 'root', $db='db_cocap'){
 	$conxn = mysql_connect($host, $user, $pwd) 
 				or 
 			trigger_error(mysql_error());

@@ -3,7 +3,7 @@ define('HOST', 'localhost');
 
 define('USER','root');
 
-define('PWD','');
+define('PWD','root');
 
 define('DB','db_cocap');
 
