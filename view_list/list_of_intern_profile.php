@@ -77,6 +77,22 @@ ddaccordion.init({
 	
 	$(document).ready(function() {
 		$('.ask').jConfirmAction();
+
+        $(".display_flag").click(function (){
+            var name = $(this).attr("name");
+            var res = name.split("_");
+            var display = $(this).attr("value");
+            $.ajax({
+                 type: "POST",
+                 url: "ajax_pages/changeInternStatus.php", 
+                 data: {interns_id: res[1],display : display},
+                 dataType: "html",  
+                 cache:false,
+                 success: 
+                      function(data){
+                      }
+                  });// you have missed this bracket
+        });
 	});
 	
 </script>
@@ -123,8 +139,9 @@ ddaccordion.init({
             <td><?php echo $value['interns_id']; ?></td>
             <td><?php echo $value['intern_name']; ?></td>
             <td><?php echo $value['email']; ?></td>
-            <td>#</td>
-                    <td>#</td>
+            <td>
+            <input type="radio" class="display_flag" name="display_<?php echo $value['interns_id']?>" value="Y" <?php if($value['display']=='Y') echo "checked"; ?>></td>
+            <td><input type="radio" class="display_flag" name="display_<?php echo $value['interns_id']?>" value="N" <?php if($value['display']=='N') echo "checked"; ?>></td>
            
 
             <td><a href="index.php?page=intpro&action=edit&pageid=<?php echo $value['interns_id']; ?>"><img src="images/user_edit.png" alt="" title="" border="0" /></a></td>
