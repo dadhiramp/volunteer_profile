@@ -69,7 +69,7 @@ $ito = $ito[2].'-'.$ito[0] .'-'.$ito[1];///yyyy-mm-dd
 
 $ikeyw = mysql_real_escape_string($_POST['ikeyw']);
 $imetadis = mysql_real_escape_string($_POST['imetadis']);
-$pid = mysql_real_escape_string($_POST['pid']);
+$pid = $_POST['pid'];
 
 $folder = "../../uploads/";
 $file_name = $_FILES['ppimage']['name'];
